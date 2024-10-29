@@ -3,10 +3,55 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ToiletApp.Views.LoginPageView"
              Title="LoginPageView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+    <VerticalStackLayout HorizontalOptions="Center">
+
+        
+        <Grid RowDefinitions="1*,1*,1*,1*,1*" RowSpacing="30">
+            <Entry
+                Grid.Row="0"
+                FontFamily="SuperOceanPersonalUse"
+                Placeholder="Username"
+                />
+
+            <Entry
+                Grid.Row="1"
+                FontFamily="SuperOceanPersonalUse"
+                IsPassword="True"
+                Placeholder="Password"
+               />
+
+            <Grid
+                Grid.Row="3"
+                ColumnDefinitions="1*"
+                RowDefinitions="1*"
+                RowSpacing="20">
+                <Button
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Margin="10"
+                    Padding="10"
+                    FontFamily="SuperOceanPersonalUse"
+                    Text="Login" />
+            </Grid>
+            <Grid
+                 Grid.Row="4"
+                 ColumnDefinitions="1*"
+                 RowDefinitions="2*"
+                 RowSpacing="20">
+                <Button
+                   Grid.Row="4"
+                   Grid.Column="1"
+                   Margin="10"
+                   Padding="10"
+                   FontFamily="SuperOceanPersonalUse"
+                   Text="Cancel" />
+            </Grid>
+            <Label
+                Grid.Row="3"
+                HorizontalOptions="Center"
+                />
+
+        </Grid>
+
     </VerticalStackLayout>
 </ContentPage>

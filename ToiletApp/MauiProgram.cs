@@ -18,6 +18,8 @@ namespace ToiletApp
                 });
             builder.Services.AddSingleton<LoginPageView> ();
             builder.Services.AddSingleton<LoginPageViewModel> ();
+            builder.Services.AddSingleton<SignUpViewModel> ();
+            builder.Services.AddSingleton<SignUpPageView> ();
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif

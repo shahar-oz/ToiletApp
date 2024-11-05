@@ -4,12 +4,19 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ToiletApp"
+    xmlns:views="clr-namespace:ToiletApp.Views"
     Shell.FlyoutBehavior="Disabled"
     Title="ToiletApp">
-
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <TabBar>
+        
+        <ShellContent
+            Title="sign up"
+            ContentTemplate="{DataTemplate views:SignUpPageView}"
+            Route="SignUp" />
+        <ShellContent
+            Title="login"
+            ContentTemplate="{DataTemplate views:LoginPageView}"
+            Route="Login" />
+    </TabBar>
 
 </Shell>

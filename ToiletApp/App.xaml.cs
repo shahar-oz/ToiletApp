@@ -5,11 +5,11 @@ namespace ToiletApp
 {
     public partial class App : Application
     {
-        public App(LoginPageViewModel vm)
+        public App()
         {
             InitializeComponent();
 
-            MainPage = new LoginPageView(vm);
+            MainPage = new AppShell();
         }
     }
 }

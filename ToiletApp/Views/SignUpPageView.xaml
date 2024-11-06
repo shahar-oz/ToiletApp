@@ -63,31 +63,44 @@
                     HorizontalOptions="Center"
                     Text="{Binding Password_Error, Mode=TwoWay}"
                     TextColor="red" />
+                <Entry
+                     Grid.Row="5"
+                     Grid.Column="1"
+                     Keyboard="Chat"
+                     Placeholder="Enter Password"
+                     Text="{Binding Password, Mode=TwoWay}" />
+
+                <Label
+                    Grid.Row="6"
+                    Grid.ColumnSpan="2"
+                    HorizontalOptions="Center"
+                    Text="{Binding Password_Error, Mode=TwoWay}"
+                    TextColor="red" />
+
 
                 <!--  בחירת סוג משתמש  -->
                 <Label
                     Grid.Row="6"
                     Margin="15"
-                    Text="בחר את סוג המשתמש:" />
+                    Text="Select user Type:" />
 
                 <StackLayout
                     Grid.Row="7"
                     Grid.ColumnSpan="2"
                     HorizontalOptions="Center"
                     Orientation="Horizontal">
-                    <!--  RadioButton למוכר  -->
+                    <!--  RadioButton Store owner  -->
                     <RadioButton
-                        Content="מוכר"
+                        Content="Store owner"
                         GroupName="UserType"
-                        IsChecked="{Binding IsSellerChecked}" />
+                        IsChecked="{Binding IsStoreownerChecked}" />
 
-                    <!--  RadioButton לקונה  -->
+                    <!--  RadioButton Regular  -->
                     <RadioButton
-                        Content="קונה"
+                        Content="Regular user"
                         GroupName="UserType"
-                        IsChecked="{Binding IsBuyerChecked}" />
+                        IsChecked="{Binding IsRegularChecked}" />
                 </StackLayout>
-
 
                 <Button
                     Grid.Row="10"

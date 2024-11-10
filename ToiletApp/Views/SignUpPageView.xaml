@@ -28,7 +28,7 @@
                     Grid.ColumnSpan="2"
                     Margin="15"
                     HorizontalOptions="Center"
-                    Text="{Binding User_Error}"
+                    Text="{Binding UserError,Mode=TwoWay}"
                     TextColor="Red" />
 
 
@@ -61,7 +61,7 @@
                     Grid.Row="5"
                     Grid.ColumnSpan="2"
                     HorizontalOptions="Center"
-                    Text="{Binding Password_Error, Mode=TwoWay}"
+                    Text="{Binding PasswordError, Mode=TwoWay}"
                     TextColor="red" />
                 <Entry
                      Grid.Row="5"

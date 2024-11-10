@@ -1,25 +1,68 @@
 ﻿using System.Windows.Input;
+using ToiletApp.Utils;
 
 namespace ToiletApp.ViewModel;
 
-public class SignUpViewModel : ContentPage
+public class SignUpViewModel : ViewModelBase
 {
-
-    private string username;
-    public string Username
+    //User_Error
+    private string userError;
+    public string UserError
     {
-        get { return username; }
-        set { username = value; OnPropertyChanged(); }
+        get { return userError; }
+        set
+        {
+            userError = value;
+            OnPropertyChanged(UserError);
+        }
     }
 
-    public string password;
+    private string name;
+    public string Name
+    {
+        get { return name; }
+        set { 
+            name = value;
+            if (!Validations.IsValidUserName(name)){
+                UserError = "test 12324325";
+            }
+            OnPropertyChanged(Name); }
+    }
+
+    private string password;
     public string Password
     {
         get { return password; }
-        set { password = value; OnPropertyChanged(); }
+        set 
+        { 
+            password = value; 
+            OnPropertyChanged(Password); 
+        }
     }
 
-   
+    private string email;
+    public string Email
+    {
+        get { return email; }
+        set
+        {
+            email = value;
+            OnPropertyChanged(Email);
+        }
+    }
+    //PasswordError
+    private string passwordError;
+    public string PasswordError
+    {
+        get { return passwordError; }
+        set
+        {
+            passwordError = value;
+            OnPropertyChanged(PasswordError);
+        }
+    }
+
+
     public ICommand IsStoreownerChecked { get; set; }
     public ICommand VisitorSelectedCommand { get; set; }
 

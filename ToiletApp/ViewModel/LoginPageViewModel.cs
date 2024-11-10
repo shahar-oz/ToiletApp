@@ -11,7 +11,7 @@ public class LoginPageViewModel : ViewModelBase
             if (username != value)
             {
                 username = value;
-                OnPropertyChanged(nameof(Email));
+                OnPropertyChanged(nameof(UserName));
                 // can add more logic here like email validation etc.
                 // can add error message property and set it here
             }
@@ -32,7 +32,20 @@ public class LoginPageViewModel : ViewModelBase
             }
         }
     }
-
+    private string email;
+    public string Email
+    {
+        get => password;
+        set
+        {
+            if (email != value)
+            {
+                email = value;
+                OnPropertyChanged(nameof(Email));
+               
+            }
+        }
+    }
     public LoginPageViewModel()
 	{
 	  

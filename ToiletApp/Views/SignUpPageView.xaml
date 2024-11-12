@@ -10,7 +10,7 @@
             VerticalOptions="FillAndExpand"
             VerticalScrollBarVisibility="Always">
 
-            <Grid ColumnDefinitions="*,1.5*" RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*">
+            <Grid ColumnDefinitions="*,1.5*" RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*">
 
                 <Label
                     x:Name="name_lbl"
@@ -24,7 +24,7 @@
                     Text="{Binding Name, Mode=TwoWay}" />
 
                 <Label
-                    Grid.Row="2"
+                    Grid.Row="1"
                     Grid.ColumnSpan="2"
                     Margin="15"
                     HorizontalOptions="Center"
@@ -44,34 +44,47 @@
                     Keyboard="Email"
                     Placeholder="Enter Email"
                     Text="{Binding Email, Mode=TwoWay}" />
+                <Label
+     Grid.Row="3"
+     Grid.ColumnSpan="2"
+     Margin="15"
+     HorizontalOptions="Center"
+     Text="{Binding UserError,Mode=TwoWay}"
+     TextColor="Red" />
 
                 <Label
                     x:Name="password_lbl"
                     Grid.Row="4"
                     Margin="15"
                     Text="Password" />
+                
                 <Entry
                     Grid.Row="4"
                     Grid.Column="1"
                     Keyboard="Chat"
                     Placeholder="Enter Password"
                     Text="{Binding Password, Mode=TwoWay}" />
+                <Label
+x:Name="password_lbl2"
+Grid.Row="7"
+Margin="15"
+Text="Validate Password" />
 
                 <Label
-                    Grid.Row="5"
+                    Grid.Row="4"
                     Grid.ColumnSpan="2"
                     HorizontalOptions="Center"
                     Text="{Binding PasswordError, Mode=TwoWay}"
                     TextColor="red" />
                 <Entry
-                     Grid.Row="5"
+                     Grid.Row="7"
                      Grid.Column="1"
                      Keyboard="Chat"
                      Placeholder="Enter Password"
                      Text="{Binding Password, Mode=TwoWay}" />
 
                 <Label
-                    Grid.Row="6"
+                    Grid.Row="7"
                     Grid.ColumnSpan="2"
                     HorizontalOptions="Center"
                     Text="{Binding Password_Error, Mode=TwoWay}"
@@ -80,12 +93,12 @@
 
                 <!--  בחירת סוג משתמש  -->
                 <Label
-                    Grid.Row="6"
+                    Grid.Row="9"
                     Margin="15"
                     Text="Select user Type:" />
 
                 <StackLayout
-                    Grid.Row="7"
+                    Grid.Row="10"
                     Grid.ColumnSpan="2"
                     HorizontalOptions="Center"
                     Orientation="Horizontal">
@@ -93,7 +106,8 @@
                     <RadioButton
                         Content="Store owner"
                         GroupName="UserType"
-                        IsChecked="{Binding IsStoreownerChecked}" />
+                        IsChecked="{Binding IsStoreownerChecked}"
+                        BorderColor="#61020a"/>
 
                     <!--  RadioButton Regular  -->
                     <RadioButton
@@ -103,11 +117,12 @@
                 </StackLayout>
 
                 <Button
-                    Grid.Row="10"
+                    Grid.Row="12"
                     Grid.ColumnSpan="2"
                     Command="{Binding RegistrationCommand}"
                     IsEnabled="{Binding CanRegister}"
-                    Text="המשך" />
+                    BackgroundColor="#61020a"
+                    Text="Sign Up" />
 
             </Grid>
 

@@ -18,6 +18,10 @@
         <Setter Property="StrokeShape" Value="Rectangle"/>
         <Setter Property="StrokeThickness" Value="1"/>
     </Style>
+    <!--<Style TargetType="RadioButton">
+        <Setter Property="BackgroundColor" Value="#61020a" />
+        <Setter Property="TextColor" Value="Black" />
+    </Style>-->
 
     <Style TargetType="BoxView">
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource Gray200}}" />

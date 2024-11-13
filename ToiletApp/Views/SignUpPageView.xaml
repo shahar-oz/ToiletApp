@@ -45,12 +45,12 @@
                     Placeholder="Enter Email"
                     Text="{Binding Email, Mode=TwoWay}" />
                 <Label
-     Grid.Row="3"
-     Grid.ColumnSpan="2"
-     Margin="15"
-     HorizontalOptions="Center"
-     Text="{Binding UserError,Mode=TwoWay}"
-     TextColor="Red" />
+                     Grid.Row="3"
+                     Grid.ColumnSpan="2"
+                     Margin="15"
+                     HorizontalOptions="Center"
+                     Text="{Binding UserError,Mode=TwoWay}"
+                     TextColor="Red" />
 
                 <Label
                     x:Name="password_lbl"
@@ -65,10 +65,10 @@
                     Placeholder="Enter Password"
                     Text="{Binding Password, Mode=TwoWay}" />
                 <Label
-x:Name="password_lbl2"
-Grid.Row="7"
-Margin="15"
-Text="Validate Password" />
+                    x:Name="password_lbl2"
+                    Grid.Row="7"
+                    Margin="15"
+                    Text="Validate Password" />
 
                 <Label
                     Grid.Row="4"
@@ -106,8 +106,8 @@ Text="Validate Password" />
                     <RadioButton
                         Content="Store owner"
                         GroupName="UserType"
-                        IsChecked="{Binding IsStoreownerChecked}"
-                        BorderColor="#61020a"/>
+                        TextColor="black"
+                        IsChecked="{Binding IsStoreownerChecked}"/>
 
                     <!--  RadioButton Regular  -->
                     <RadioButton

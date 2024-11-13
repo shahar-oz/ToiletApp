@@ -23,10 +23,12 @@ public class SignUpViewModel : ViewModelBase
         get { return name; }
         set { 
             name = value;
-            if (!Validations.IsValidUserName(name)){
+            OnPropertyChanged(Name);
+            if (!Validations.IsValidUserName(Name)){
                 UserError = "test 12324325";
+                OnPropertyChanged(Name);
             }
-            OnPropertyChanged(Name); }
+     }
     }
 
     private string password;

@@ -153,7 +153,7 @@ public class LoginPageViewModel : ViewModelBase
 
             
             Shell.Current.FlyoutIsPresented = false;
-            Shell.Current.GoToAsync("")
+            Shell.Current.GoToAsync("SelectToiletView");
 
         }
     }

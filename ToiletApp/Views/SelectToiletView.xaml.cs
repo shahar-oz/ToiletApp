@@ -1,3 +1,5 @@
+using ToiletApp.ViewModel;
+
 namespace ToiletApp.Views;
 
 public partial class SelectToiletView : ContentPage

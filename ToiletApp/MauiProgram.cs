@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using ToiletApp.Views;
 using ToiletApp.ViewModel;
+using ToiletApp.Services;
 
 namespace ToiletApp
 {
@@ -16,10 +17,13 @@ namespace ToiletApp
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
-            builder.Services.AddSingleton<LoginPageView> ();
-            builder.Services.AddSingleton<LoginPageViewModel> ();
-            builder.Services.AddSingleton<SignUpViewModel> ();
-            builder.Services.AddSingleton<SignUpPageView> ();
+            builder.Services.AddSingleton<ToiletAppWebAPIProxy>();
+            builder.Services.AddTransient<LoginPageView> ();
+            builder.Services.AddTransient<LoginPageViewModel> ();
+            builder.Services.AddTransient<SignUpViewModel> ();
+            builder.Services.AddTransient<SignUpPageView> ();
+            builder.Services.AddTransient<AppShell>();
+            builder.Services.AddTransient<SelectToiletView>();
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif

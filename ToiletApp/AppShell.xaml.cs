@@ -9,6 +9,7 @@ namespace ToiletApp
             InitializeComponent();
             Routing.RegisterRoute("SignUp", typeof(SignUpPageView));
             Routing.RegisterRoute("Login", typeof(LoginPageView));
+            Routing.RegisterRoute("SelectToiletView", typeof(SelectToiletView));
 
         }
     }

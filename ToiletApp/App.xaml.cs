@@ -12,7 +12,7 @@ namespace ToiletApp
             InitializeComponent();
             LoginPageView? v = serviceProvider.GetService<LoginPageView>();
             MainPage = new NavigationPage(v);
-            MainPage = new AppShell();
+            
         }
     }
 }

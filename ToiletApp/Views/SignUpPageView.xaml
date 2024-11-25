@@ -59,7 +59,8 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Button Text="Sign Up" Command="{Binding SignUpCommand}" IsEnabled="{Binding NotInServerCall}" Grid.Column="1" Style="{StaticResource buttonStyle}" />
+                    <!--do the data connection in order to bind - look at tamis-->
+                    <Button Text="Sign Up" Command="{Binding RegisterCommand}" IsEnabled="{Binding NotInServerCall}" Grid.Column="1" Style="{StaticResource buttonStyle}" />
                     <Button Text="Cancel" Command="{Binding CancelCommand}" IsEnabled="{Binding NotInServerCall}" Grid.Column="0" Style="{StaticResource buttonStyle}"/>
                 </Grid>
             </VerticalStackLayout>

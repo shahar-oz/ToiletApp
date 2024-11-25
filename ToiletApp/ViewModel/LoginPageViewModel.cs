@@ -63,7 +63,7 @@ public class LoginPageViewModel : ViewModelBase
         this.proxy = proxy;
         this.serviceProvider = serviceProvider;
         this.LoginCommand = new Command(OnLogin);
-        this.RegisterCommand = new Command(OnRegister);
+        this.RegisterCommand = new Command(OnSignUp);
 
     }
 
@@ -153,11 +153,11 @@ public class LoginPageViewModel : ViewModelBase
 
             
             Shell.Current.FlyoutIsPresented = false;
-            Shell.Current.GoToAsync("SelectToiletView");
+            //Shell.Current.GoToAsync("SelectToiletView");
 
         }
     }
-    private void OnRegister()
+    private void OnSignUp()
     {
 
         ErrorMsg = "";
@@ -168,7 +168,5 @@ public class LoginPageViewModel : ViewModelBase
 
     }
 
-
-
-
+    
 }

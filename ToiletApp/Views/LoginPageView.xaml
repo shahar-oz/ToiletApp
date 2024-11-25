@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ToiletApp.Views.LoginPageView"
              Title="LoginPageView">
-    <VerticalStackLayout Padding="10" BackgroundColor="White">
+    <VerticalStackLayout Padding="10" BackgroundColor="White" IsEnabled="{Binding NotInServerCall}">
 
         <Label
             Padding="5"
@@ -45,18 +45,21 @@
             HorizontalOptions="FillAndExpand"
             Text="Login"
             VerticalOptions="CenterAndExpand" />
-
+        <Label FontFamily="Consolas" Text="{Binding ErrorMsg}"
+               TextColor="red"/>
         <StackLayout Margin="0,20,0,0" HorizontalOptions="Center">
             <Label Text="Doesn't have an account?" />
             <Label
                 FontAttributes="Bold"
                 HorizontalOptions="Center"
                 Text="Sign Up here!"
-                TextColor="Blue">
+                TextColor="Blue"
+                    >
                 <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding GoToRegisterCommand}" />
+                    <TapGestureRecognizer Command="{Binding RegisterCommand}" />
                 </Label.GestureRecognizers>
             </Label>
         </StackLayout>
+        <ActivityIndicator IsRunning="{Binding InServerCall}"/>
     </VerticalStackLayout>
 </ContentPage>

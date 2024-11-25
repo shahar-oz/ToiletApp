@@ -1,108 +1,29 @@
-﻿using CoreFoundation;
-using System.Windows.Input;
-using ToiletApp.Utils;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using ToiletApp.Services;
+using ToiletApp.Models;
 
 namespace ToiletApp.ViewModel;
 
 public class SignUpViewModel : ViewModelBase
 {
-    //    //User_Error
-    //    private string userError;
-    //    public string UserError
-    //    {
-    //        get { return userError; }
-    //        set
-    //        {
-    //            userError = value;
-    //            OnPropertyChanged(UserError);
-    //        }
-    //    }
-
-    //    private string name;
-    //    public string Name
-    //    {
-    //        get { return name; }
-    //        set { 
-    //            name = value;
-    //            OnPropertyChanged(Name);
-    //            if (!Validations.IsValidUserName(Name)){
-    //                UserError = "test 12324325";
-    //                OnPropertyChanged(Name);
-    //            }
-    //     }
-    //    }
-
-    //    private string password;
-    //    public string Password
-    //    {
-    //        get { return password; }
-    //        set 
-    //        { 
-    //            password = value; 
-    //            OnPropertyChanged(Password); 
-    //        }
-    //    }
-
-    //    private string email;
-    //    public string Email
-    //    {
-    //        get { return email; }
-    //        set
-    //        {
-    //            email = value;
-    //            OnPropertyChanged(Email);
-    //        }
-    //    }
-    //    //PasswordError
-    //    private string passwordError;
-    //    public string PasswordError
-    //    {
-    //        get { return passwordError; }
-    //        set
-    //        {
-    //            passwordError = value;
-    //            OnPropertyChanged(PasswordError);
-    //        }
-    //    }
-
-
-    //    public ICommand IsStoreownerChecked { get; set; }
-    //    public ICommand VisitorSelectedCommand { get; set; }
-
-
-    //    private bool isManager;
-    //    public bool IsManager
-    //    {
-    //        get { return isManager; }
-    //        set
-    //        {
-    //            isManager = value;
-    //            OnPropertyChanged();
-    //            ((Command)IsStoreownerChecked).ChangeCanExecute();
-    //            ((Command)VisitorSelectedCommand).ChangeCanExecute();
-    //        }
-    //    }
-
-    //    public SignUpViewModel()
-    //    {
-
-    //        IsStoreownerChecked = new Command(StoreownerSelected, () => !IsManager);
-    //        VisitorSelectedCommand = new Command(VisitorSelected, () => IsManager);
-    //        IsManager = false;
-
-    //    }
-
-    //    private async void StoreownerSelected()
-    //    {
-    //        IsManager = true;
-
-    //    }
-
-    //    private async void VisitorSelected()
-    //    {
-    //        IsManager = false;
-    //    }
-
+    private ToiletAppWebAPIProxy proxy;
+    public SignUpViewModel(ToiletAppWebAPIProxy proxy)
+    {
+        this.proxy = proxy;
+        RegisterCommand = new Command(OnRegister);
+        CancelCommand = new Command(OnCancel);
+        //ShowPasswordCommand = new Command(OnShowPassword);
+        IsPassword = true;
+        //NameError = "Name is required";
+        //LastNameError = "Last name is required";
+        EmailError = "Email is required";
+        PasswordError = "Password must be at least 4 characters long and contain letters and numbers";
+    }
+    //Defiine properties for each field in the registration form including error messages and validation logic
     #region Name
     private bool showNameError;
 
@@ -147,6 +68,49 @@ public class SignUpViewModel : ViewModelBase
     }
     #endregion
 
+    #region LastName
+    private bool showLastNameError;
+
+    public bool ShowLastNameError
+    {
+        get => showLastNameError;
+        set
+        {
+            showLastNameError = value;
+            OnPropertyChanged("ShowLastNameError");
+        }
+    }
+
+    private string lastName;
+
+    public string LastName
+    {
+        get => lastName;
+        set
+        {
+            lastName = value;
+            ValidateLastName();
+            OnPropertyChanged("LastName");
+        }
+    }
+
+    private string lastNameError;
+
+    public string LastNameError
+    {
+        get => lastNameError;
+        set
+        {
+            lastNameError = value;
+            OnPropertyChanged("LastNameError");
+        }
+    }
+
+    private void ValidateLastName()
+    {
+        this.ShowLastNameError = string.IsNullOrEmpty(LastName);
+    }
+    #endregion
     #region Email
     private bool showEmailError;
 
@@ -207,33 +171,6 @@ public class SignUpViewModel : ViewModelBase
             EmailError = "Email is required";
         }
     }
-    #endregion
-    #region Password
-    private bool showPasswordError;
-
-    public bool ShowPasswordError
-    {
-        get => showPasswordError;
-        set
-        {
-            showPasswordError = value;
-            OnPropertyChanged("ShowPasswordError");
-        }
-    }
-
-    private string password;
-
-    public string Password
-    {
-        get => password;
-        set
-        {
-            password = value;
-            ValidatePassword();
-            OnPropertyChanged("Password");
-        }
-    }
-
     private string passwordError;
 
     public string PasswordError
@@ -280,32 +217,11 @@ public class SignUpViewModel : ViewModelBase
         IsPassword = !IsPassword;
     }
     #endregion
+    //Define a command for the register button
+    public Command RegisterCommand { get; }
+    public Command CancelCommand { get; }
 
-    #region Photo
-
-    private string photoURL;
-
-    public string PhotoURL
-    {
-        get => photoURL;
-        set
-        {
-            photoURL = value;
-            OnPropertyChanged("PhotoURL");
-        }
-    }
-
-    private string localPhotoPath;
-
-    public string LocalPhotoPath
-    {
-        get => localPhotoPath;
-        set
-        {
-            localPhotoPath = value;
-            OnPropertyChanged("LocalPhotoPath");
-        }
-    }
+    //Define a method that will be called when the register button is clicked
     public async void OnRegister()
     {
         ValidateName();
@@ -313,10 +229,10 @@ public class SignUpViewModel : ViewModelBase
         ValidateEmail();
         ValidatePassword();
 
-        if (!ShowNameError && !ShowLastNameError && !ShowEmailError && !ShowPasswordError)
+        if (!ShowNameError && !ShowLastNameError && !ShowEmailError)
         {
             //Create a new AppUser object with the data from the registration form
-            var newUser = new AppUser
+            var newUser = new UserInfo
             {
                 UserName = Name,
                 UserLastName = LastName,
@@ -364,5 +280,6 @@ public class SignUpViewModel : ViewModelBase
         //Navigate back to the login page
         ((App)(Application.Current)).MainPage.Navigation.PopAsync();
     }
-}
 
+}
+}

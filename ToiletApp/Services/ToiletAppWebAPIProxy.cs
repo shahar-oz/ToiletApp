@@ -91,7 +91,7 @@ namespace ToiletApp.Services
         public async Task<UserInfo?> Register(UserInfo user)
         {
             //Set URI to the specific function API
-            string url = $"{this.baseUrl}register";
+            string url = $"{this.baseUrl}signup";
             try
             {
                 //Call the server API

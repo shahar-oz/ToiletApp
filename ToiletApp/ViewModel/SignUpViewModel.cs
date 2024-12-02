@@ -248,7 +248,7 @@ public class SignUpViewModel : ViewModelBase
         ValidateEmail();
         ValidatePassword();
 
-        if (!ShowNameError && !ShowLastNameError && !ShowEmailError)
+        if (!ShowNameError &&  !ShowEmailError)
         {
             //Create a new AppUser object with the data from the registration form
             var newUser = new UserInfo

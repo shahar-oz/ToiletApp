@@ -171,6 +171,33 @@ public class SignUpViewModel : ViewModelBase
             EmailError = "Email is required";
         }
     }
+    #endregion
+    #region Password
+    private bool showPasswordError;
+
+    public bool ShowPasswordError
+    {
+        get => showPasswordError;
+        set
+        {
+            showPasswordError = value;
+            OnPropertyChanged("ShowPasswordError");
+        }
+    }
+
+    private string password;
+
+    public string Password
+    {
+        get => password;
+        set
+        {
+            password = value;
+            ValidatePassword();
+            OnPropertyChanged("Password");
+        }
+    }
+
     private string passwordError;
 
     public string PasswordError
@@ -196,7 +223,7 @@ public class SignUpViewModel : ViewModelBase
         else
             this.ShowPasswordError = false;
     }
-
+  
     //This property will indicate if the password entry is a password
     private bool isPassword = true;
     public bool IsPassword
@@ -207,14 +234,6 @@ public class SignUpViewModel : ViewModelBase
             isPassword = value;
             OnPropertyChanged("IsPassword");
         }
-    }
-    //This command will trigger on pressing the password eye icon
-    public Command ShowPasswordCommand { get; }
-    //This method will be called when the password eye icon is pressed
-    public void OnShowPassword()
-    {
-        //Toggle the password visibility
-        IsPassword = !IsPassword;
     }
     #endregion
     //Define a command for the register button
@@ -234,11 +253,10 @@ public class SignUpViewModel : ViewModelBase
             //Create a new AppUser object with the data from the registration form
             var newUser = new UserInfo
             {
-                UserName = Name,
-                UserLastName = LastName,
-                UserEmail = Email,
-                UserPassword = Password,
-                IsManager = false
+                Username = Name,
+                Email = Email,
+                Password = Password,
+                UserType = 1
             };
 
             //Call the Register method on the proxy to register the new user
@@ -249,17 +267,6 @@ public class SignUpViewModel : ViewModelBase
             //If the registration was successful, navigate to the login page
             if (newUser != null)
             {
-                //UPload profile imae if needed
-                if (!string.IsNullOrEmpty(LocalPhotoPath))
-                {
-                    await proxy.LoginAsync(new LoginInfo { Email = newUser.UserEmail, Password = newUser.UserPassword });
-                    AppUser? updatedUser = await proxy.UploadProfileImage(LocalPhotoPath);
-                    if (updatedUser == null)
-                    {
-                        InServerCall = false;
-                        await Application.Current.MainPage.DisplayAlert("Registration", "User Data Was Saved BUT Profile image upload failed", "ok");
-                    }
-                }
                 InServerCall = false;
 
                 ((App)(Application.Current)).MainPage.Navigation.PopAsync();
@@ -281,5 +288,4 @@ public class SignUpViewModel : ViewModelBase
         ((App)(Application.Current)).MainPage.Navigation.PopAsync();
     }
 
-}
 }

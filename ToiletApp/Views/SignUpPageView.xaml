@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ToiletApp.Views.SignUpPageView"
+             xmlns:viewmodels="clr-namespace:ToiletApp.ViewModel"
+             x:DataType="viewmodels:SignUpViewModel"
              Title="SignUpPageView">
     <StackLayout VerticalOptions="FillAndExpand">
         <ScrollView>
@@ -50,7 +52,7 @@
                         <ColumnDefinition Width="40" />
                     </Grid.ColumnDefinitions>
                     <Entry Grid.Column="0" Placeholder="Type Password" Text="{Binding Password}" IsPassword="{Binding IsPassword}" Style="{StaticResource entryStyle}" />
-                    <ImageButton Grid.Column="1" HeightRequest="25" Source="passwordeye.jpg" Command="{Binding ShowPasswordCommand}" />
+                    <!--<ImageButton Grid.Column="1" HeightRequest="25" Source="passwordeye.jpg" Command="{Binding ShowPasswordCommand}" />-->
                 </Grid>
 
                 <!-- Sign Up and Cancel Buttons -->
@@ -60,7 +62,7 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <!--do the data connection in order to bind - look at tamis-->
-                    <Button Text="Sign Up" Command="{Binding RegisterCommand}" IsEnabled="{Binding NotInServerCall}" Grid.Column="1" Style="{StaticResource buttonStyle}" />
+                    <Button Text="Sign Up" Command="{Binding RegisterCommand}"  Grid.Column="1" Style="{StaticResource buttonStyle}" />
                     <Button Text="Cancel" Command="{Binding CancelCommand}" IsEnabled="{Binding NotInServerCall}" Grid.Column="0" Style="{StaticResource buttonStyle}"/>
                 </Grid>
             </VerticalStackLayout>

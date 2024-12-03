@@ -9,14 +9,50 @@
     Title="ToiletApp">
     <TabBar>
         
-        <ShellContent
+        <!--<ShellContent
             Title="sign up"
             ContentTemplate="{DataTemplate views:SignUpPageView}"
             Route="SignUp" />
         <ShellContent
             Title="login"
             ContentTemplate="{DataTemplate views:LoginPageView}"
-            Route="Login" />
+            Route="Login" />-->
+        <ShellContent
+      Title="AddSanitMan"
+      ContentTemplate="{DataTemplate views:AddSanitManegerView}"
+      Route="AddSanitManeger" />
+        <ShellContent
+      Title="AddToilet"
+      ContentTemplate="{DataTemplate views:AddToiletView}"
+      Route="AddToilet" />
+        <ShellContent
+      Title="AdminsNavigation"
+      ContentTemplate="{DataTemplate views:AdminsNavigationView}"
+      Route="AdminsNavigation" />
+        <ShellContent
+      Title="SanitationManeger"
+      ContentTemplate="{DataTemplate views:SanitationManegerView}"
+      Route="SanitationManeger" />
+        <ShellContent
+      Title="SelectedToilet"
+      ContentTemplate="{DataTemplate views:SelectedToiletView}"
+      Route="SelectedToilet" />
+        <ShellContent
+      Title="SelectToilet"
+      ContentTemplate="{DataTemplate views:SelectToiletView}"
+      Route="SelectToilet" />
+        <ShellContent
+      Title="ServiceProvider"
+      ContentTemplate="{DataTemplate views:ServiceProviderView}"
+      Route="ServiceProvider" />
+        <ShellContent
+      Title="ShareYourEx"
+      ContentTemplate="{DataTemplate views:ShareYourExView}"
+      Route="ShareYourEx" />
+        <ShellContent
+      Title="System"
+      ContentTemplate="{DataTemplate views:SystemView}"
+      Route="System" />
     </TabBar>
 
 </Shell>

@@ -23,20 +23,17 @@
       Route="AddSanitManeger" />
         <ShellContent
       Title="AddToilet"
-      ContentTemplate="{DataTemplate views:AddToiletView}"
+      ContentTemplate="{DataTemplate views:AddToilet}"
       Route="AddToilet" />
         <ShellContent
       Title="AdminsNavigation"
-      ContentTemplate="{DataTemplate views:AdminsNavigationView}"
+      ContentTemplate="{DataTemplate views:Admin_sNavigationView}"
       Route="AdminsNavigation" />
         <ShellContent
       Title="SanitationManeger"
-      ContentTemplate="{DataTemplate views:SanitationManegerView}"
+      ContentTemplate="{DataTemplate views:SanitationManeger}"
       Route="SanitationManeger" />
-        <ShellContent
-      Title="SelectedToilet"
-      ContentTemplate="{DataTemplate views:SelectedToiletView}"
-      Route="SelectedToilet" />
+      
         <ShellContent
       Title="SelectToilet"
       ContentTemplate="{DataTemplate views:SelectToiletView}"

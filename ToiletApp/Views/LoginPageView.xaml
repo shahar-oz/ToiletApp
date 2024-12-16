@@ -2,18 +2,18 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             
-             x:Class="ToiletApp.Views.LoginPageView"
-           
-             Title="LoginPageView">
+             x:Class="ToiletApp.Views.LoginPageView">
     <VerticalStackLayout Padding="10" BackgroundColor="White" IsEnabled="{Binding NotInServerCall}">
 
         <Label
             Padding="5"
             FontAttributes="Bold"
-            FontFamily="Consolas"
+            FontFamily="moweraserifdisplay"
             FontSize="30"
             Text="Login"
-            TextColor="Black" />
+            TextColor="Black" 
+
+/>
 
         <Label FontFamily="Consolas" Text="Email" />
         <Frame

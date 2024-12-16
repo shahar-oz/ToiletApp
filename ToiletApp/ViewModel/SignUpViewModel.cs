@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using ToiletApp.Services;
 using ToiletApp.Models;
+using Microsoft.Extensions.DependencyInjection;
+using System.Windows.Input;
+
 
 namespace ToiletApp.ViewModel;
 
@@ -16,7 +19,10 @@ public class SignUpViewModel : ViewModelBase
         this.proxy = proxy;
         RegisterCommand = new Command(OnRegister);
         CancelCommand = new Command(OnCancel);
+        GeneralSelectedCommand = new Command(GeneralSelected, () => !IsGeneral);
+        ServiceproSelectedCommand = new Command(ServiceproSelected, () => IsGeneral);
         //ShowPasswordCommand = new Command(OnShowPassword);
+        IsGeneral = true;
         IsPassword = true;
         //NameError = "Name is required";
         //LastNameError = "Last name is required";
@@ -239,6 +245,8 @@ public class SignUpViewModel : ViewModelBase
     //Define a command for the register button
     public Command RegisterCommand { get; }
     public Command CancelCommand { get; }
+    public ICommand GeneralSelectedCommand { get; set; }
+    public ICommand ServiceproSelectedCommand { get; set; }
 
     //Define a method that will be called when the register button is clicked
     public async void OnRegister()
@@ -256,9 +264,9 @@ public class SignUpViewModel : ViewModelBase
                 Username = Name,
                 Email = Email,
                 Password = Password,
-                UserType = 1
+                UserType = 2
             };
-
+            if(IsGeneral) newUser.UserType = 1;
             //Call the Register method on the proxy to register the new user
             InServerCall = true;
             newUser = await proxy.Register(newUser);
@@ -288,4 +296,31 @@ public class SignUpViewModel : ViewModelBase
         ((App)(Application.Current)).MainPage.Navigation.PopAsync();
     }
 
+
+
+    #region selection of type 
+    private bool isGeneral;
+    public bool IsGeneral
+    {
+        get { return isGeneral; }
+        set
+        {
+            isGeneral = value;
+            OnPropertyChanged();
+            ((Command)GeneralSelectedCommand).ChangeCanExecute();
+            ((Command)ServiceproSelectedCommand).ChangeCanExecute();
+        }
+    }
+
+
+    private async void GeneralSelected()
+    {
+        IsGeneral = true;
+    }
+
+    private async void ServiceproSelected()
+    {
+        IsGeneral = false;
+    }
+    #endregion
 }

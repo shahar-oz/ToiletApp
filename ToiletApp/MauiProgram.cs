@@ -40,6 +40,7 @@ namespace ToiletApp
             builder.Services.AddTransient<AddSanitManegerViewModel>();
             builder.Services.AddTransient<AddToiletViewModel>();
             builder.Services.AddTransient<AdminsNavigationViewModel>();
+            builder.Services.AddTransient<AppShellViewModel>();
             builder.Services.AddTransient<LoginPageViewModel> ();
             builder.Services.AddTransient<SanitationManegerViewModel>();
             builder.Services.AddTransient<SelectedToiletViewModel>();

@@ -5,51 +5,43 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ToiletApp"
     xmlns:views="clr-namespace:ToiletApp.Views"
-    Shell.FlyoutBehavior="Disabled"
+    Shell.FlyoutBehavior="Flyout"
     Title="ToiletApp">
-    <TabBar>
-        
-        <!--<ShellContent
-            Title="sign up"
-            ContentTemplate="{DataTemplate views:SignUpPageView}"
-            Route="SignUp" />
-        <ShellContent
-            Title="login"
-            ContentTemplate="{DataTemplate views:LoginPageView}"
-            Route="Login" />-->
-        <ShellContent
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+
+        <ShellContent IsVisible="{Binding IsAdmin}"
       Title="AddSanitMan"
       ContentTemplate="{DataTemplate views:AddSanitManegerView}"
-      Route="AddSanitManeger" />
-        <ShellContent
-      Title="AddToilet"
+      Route="AddSanitManeger"/>
+        <ShellContent IsVisible="{Binding IsAdmin}"
+      Title="AddToilet" 
       ContentTemplate="{DataTemplate views:AddToilet}"
       Route="AddToilet" />
-        <ShellContent
-      Title="AdminsNavigation"
+        <ShellContent IsVisible="{Binding IsServiceProvider}"
+        Title="AddToilet" 
+        ContentTemplate="{DataTemplate views:AddToilet}"
+        Route="AddToilet" />
+        <ShellContent IsVisible="{Binding IsAdmin}"
+      Title="AdminsNavigation" 
       ContentTemplate="{DataTemplate views:Admin_sNavigationView}"
       Route="AdminsNavigation" />
-        <ShellContent
+        <ShellContent IsVisible="{Binding IsSanitationManager}"
       Title="SanitationManeger"
       ContentTemplate="{DataTemplate views:SanitationManeger}"
       Route="SanitationManeger" />
-      
-        <ShellContent
+        <ShellContent IsVisible="{Binding IsGeneralUser}"
       Title="SelectToilet"
       ContentTemplate="{DataTemplate views:SelectToiletView}"
       Route="SelectToilet" />
-        <ShellContent
+        <ShellContent IsVisible="{Binding IsServiceProvider}"
       Title="ServiceProvider"
       ContentTemplate="{DataTemplate views:ServiceProviderView}"
       Route="ServiceProvider" />
-        <ShellContent
-      Title="ShareYourEx"
-      ContentTemplate="{DataTemplate views:ShareYourExView}"
-      Route="ShareYourEx" />
-        <ShellContent
+        <ShellContent  IsVisible="{Binding IsAdmin}"
       Title="System"
       ContentTemplate="{DataTemplate views:SystemView}"
       Route="System" />
-    </TabBar>
+    </FlyoutItem>
+    <MenuItem Text="Logout"></MenuItem>
 
 </Shell>

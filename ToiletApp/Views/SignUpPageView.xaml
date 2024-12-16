@@ -54,8 +54,51 @@
                     <Entry Grid.Column="0" Placeholder="Type Password" Text="{Binding Password}" IsPassword="{Binding IsPassword}" Style="{StaticResource entryStyle}" />
                     <!--<ImageButton Grid.Column="1" HeightRequest="25" Source="passwordeye.jpg" Command="{Binding ShowPasswordCommand}" />-->
                 </Grid>
+                    <HorizontalStackLayout HorizontalOptions="Center" Grid.Row="0">
+                        <!--General User selection-->
+                        <VerticalStackLayout Spacing="5">
 
-                <!-- Sign Up and Cancel Buttons -->
+                            <Button 
+                        x:Name="GeneralDot"
+                        HeightRequest="24"
+                        WidthRequest="24"
+                        CornerRadius="30"
+                        Padding="0"
+                        BorderColor="Gray"
+                        BackgroundColor="Purple"
+                        Command="{Binding GeneralSelectedCommand}"
+                        >
+                            </Button>
+                            <Label 
+                        Text="Manager"
+                        FontSize="14"
+                        HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+
+
+
+                        <!--Visitor Selection-->
+
+                        <VerticalStackLayout Spacing="5">
+                            <Button 
+                        x:Name="VisitorDot"
+                        HeightRequest="24"
+                        WidthRequest="24"
+                        CornerRadius="12"
+                        Padding="0"
+                        BorderColor="Gray"
+                        BackgroundColor="Purple"
+                        Command="{Binding ServiceproSelectedCommand}"   
+                        >
+
+                            </Button>
+                            <Label 
+                        Text="Visitor"
+                        FontSize="14"
+                        HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                    <!-- Sign Up and Cancel Buttons -->
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />

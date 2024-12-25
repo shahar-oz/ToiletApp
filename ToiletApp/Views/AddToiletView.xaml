@@ -3,10 +3,70 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ToiletApp.Views.AddToilet"
              Title="AddToilet">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <StackLayout VerticalOptions="FillAndExpand">
+        <ScrollView>
+            <Grid>
+
+
+                <!-- Main Content -->
+                <VerticalStackLayout IsEnabled="{Binding NotInServerCall}" Padding="20">
+
+                    <!--  Address -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Address" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
+                       
+                    </Grid>
+                    <Entry Placeholder="Type address" Text="{Binding Name}" Style="{StaticResource entryStyle}" />
+
+
+
+                    <!-- Price -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Price" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
+                    </Grid>
+                    <Entry Placeholder="Type price" Text="{Binding Email}" Style="{StaticResource entryStyle}" />
+
+
+                    <!--Accessibility -->
+                    <StackLayout RadioButtonGroup.GroupName="option" RadioButtonGroup.SelectedValue="{Binding Option}">
+                        <Label Margin="10" Text="Choose your toilet's accessibility " />
+                        <RadioButton Content="accessible" Value='2' />
+                        <RadioButton Content="not accessible" Value='1'/>
+
+                    </StackLayout>
+
+
+                    <!--  Image -->
+                    <Grid Padding="20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Image" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
+                    </Grid>
+                  
+                    <!-- Add Toilet Button -->
+            
+                     
+                        <!--do the data connection in order to bind - look at tamis-->
+                        <Button Text="Add Toilet" Command="{Binding RegisterCommand}"  Padding="20" WidthRequest="200" HorizontalOptions="Center" Style="{StaticResource buttonStyle}" />
+                
+                </VerticalStackLayout>
+                <!-- Centered ActivityIndicator -->
+                <ActivityIndicator IsRunning="{Binding InServerCall}" 
+                Color="Red" 
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+            </Grid>
+
+        </ScrollView>
+    </StackLayout>
 </ContentPage>

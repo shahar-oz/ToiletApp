@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ToiletApp.Models;
+using ToiletApp.Views;
 
 namespace ToiletApp.ViewModel
 {
@@ -46,22 +47,22 @@ namespace ToiletApp.ViewModel
             }
         }
 
-        //    //this command will be used for logout menu item
-        //    public Command LogoutCommand
-        //    {
-        //        get
-        //        {
-        //            return new Command(OnLogout);
-        //        }
-        //    }
-        //    //this method will be trigger upon Logout button click
-        //    public void OnLogout()
-        //    {
-        //        ((App)Application.Current).LoggedInUser = null;
+        //this command will be used for logout menu item
+        public Command LogoutCommand
+        {
+            get
+            {
+                return new Command(OnLogout);
+            }
+        }
+        //this method will be trigger upon Logout button click
+        public void OnLogout()
+        {
+            ((App)Application.Current).LoggedInUser = null;
 
-        //        ((App)Application.Current).MainPage = new NavigationPage(serviceProvider.GetService<LoginView>());
-        //    }
-        //}
+            ((App)Application.Current).MainPage = new NavigationPage(serviceProvider.GetService<LoginPageView>());
+        }
     }
 }
+
 

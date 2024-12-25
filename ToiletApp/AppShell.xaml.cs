@@ -14,5 +14,7 @@ namespace ToiletApp
             Routing.RegisterRoute("SelectToiletView", typeof(SelectToiletView));
 
         }
+
+      
     }
 }

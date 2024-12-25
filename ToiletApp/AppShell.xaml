@@ -12,36 +12,35 @@
         <ShellContent IsVisible="{Binding IsAdmin}"
       Title="AddSanitMan"
       ContentTemplate="{DataTemplate views:AddSanitManegerView}"
-      Route="AddSanitManeger"/>
+      Route="AddSanitManeger" Icon="plusicon.png" />
         <ShellContent IsVisible="{Binding IsAdmin}"
       Title="AddToilet" 
       ContentTemplate="{DataTemplate views:AddToilet}"
-      Route="AddToilet" />
+      Route="AddToilet" Icon="plusicon.png" />
         <ShellContent IsVisible="{Binding IsServiceProvider}"
         Title="AddToilet" 
         ContentTemplate="{DataTemplate views:AddToilet}"
-        Route="AddToilet" />
-        <ShellContent IsVisible="{Binding IsAdmin}"
-      Title="AdminsNavigation" 
-      ContentTemplate="{DataTemplate views:Admin_sNavigationView}"
-      Route="AdminsNavigation" />
+        Route="AddToilet" Icon="plusicon.png"/>
+       
         <ShellContent IsVisible="{Binding IsSanitationManager}"
       Title="SanitationManeger"
       ContentTemplate="{DataTemplate views:SanitationManeger}"
-      Route="SanitationManeger" />
+      Route="SanitationManeger" Icon="sanitman.png" />
         <ShellContent IsVisible="{Binding IsGeneralUser}"
       Title="SelectToilet"
       ContentTemplate="{DataTemplate views:SelectToiletView}"
-      Route="SelectToilet" />
+      Route="SelectToilet" Icon="selecticon.png" />
         <ShellContent IsVisible="{Binding IsServiceProvider}"
       Title="ServiceProvider"
       ContentTemplate="{DataTemplate views:ServiceProviderView}"
-      Route="ServiceProvider" />
+      Route="ServiceProvider" Icon="serviceicon.png" />
         <ShellContent  IsVisible="{Binding IsAdmin}"
       Title="System"
       ContentTemplate="{DataTemplate views:SystemView}"
-      Route="System" />
+      Route="System" Icon="wrenchicon.png" />
     </FlyoutItem>
-    <MenuItem Text="Logout"></MenuItem>
+    <MenuItem Text="Logout"
+              Command="{Binding LogoutCommand}"
+              IconImageSource="logouticon.png"></MenuItem>
 
 </Shell>

@@ -11,7 +11,7 @@
                 <!-- Main Content -->
                 <VerticalStackLayout IsEnabled="{Binding NotInServerCall}" Padding="20">
 
-                    <!--  Address -->
+                    <!--  Address --><!--
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -20,8 +20,18 @@
                         <Label Text="Address" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
                        
                     </Grid>
-                    <Entry Placeholder="Type address" Text="{Binding Name}" Style="{StaticResource entryStyle}" />
-
+                    <Entry Placeholder="Type address" Text="{Binding Name}" Style="{StaticResource entryStyle}" />-->
+                    <!-- Full Address -->
+                    
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Address" Grid.Column="0" Style="{StaticResource labelAddressStyle}" />
+                        <Label Text="{Binding AddressError}" IsVisible="{Binding ShowAddressError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
+                    </Grid>
+                    <Entry Placeholder="Type Address" Text="{Binding Address}" Style="{StaticResource entryStyle}" />
 
 
                     <!-- Price -->
@@ -45,14 +55,38 @@
 
 
                     <!--  Image -->
-                    <Grid Padding="20">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Label Text="Image" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
-                    </Grid>
-                  
+                    <Frame BorderColor="Black" Padding="5" Margin="15" HeightRequest="130" WidthRequest="130" BackgroundColor="White">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image x:Name="theImage" Source="{Binding LocalPhotoPath}" HeightRequest="170" />
+                            <Label Grid.Row="0"
+                           Text="Click Here To Pick a Photo!"
+                           TextColor="Blue"
+                           HorizontalOptions="Center"
+                           VerticalOptions="End">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding UploadPhotoCommand}"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <Label Grid.Row="2"
+                           Text="Upload Photo from Gallery!"
+                           TextColor="Blue"
+                           HorizontalOptions="Center"
+                           VerticalOptions="End">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding GalleryPhotoCommand}"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                    </Frame>
+
                     <!-- Add Toilet Button -->
             
                      

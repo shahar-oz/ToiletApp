@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using ToiletApp.Services;
+using ToiletApp.Models;
 
 namespace ToiletApp.ViewModel
 {
@@ -73,5 +76,85 @@ namespace ToiletApp.ViewModel
         //}
 
         //#endregion
+
+        private ToiletAppWebAPIProxy proxy;
+        private IServiceProvider serviceProvider;
+
+        #region builder
+        public AddToiletViewModel(ToiletAppWebAPIProxy proxy, IServiceProvider serviceProvider)
+        {
+            this.proxy = proxy;
+            this.serviceProvider = serviceProvider;
+            AddToiletCommand = new Command(AddToilet);
+        }
+        #endregion
+
+        #region Properties
+        private string address;
+        public string Address
+        {
+            get { return address; }
+            set { address = value; OnPropertyChanged(); }
+        }
+
+        private string errorMsg;
+        public string ErrorMsg
+        {
+            get => errorMsg;
+            set
+            {
+                if (errorMsg != value)
+                {
+                    errorMsg = value;
+                    OnPropertyChanged(nameof(ErrorMsg));
+                }
+            }
+        }
+
+        private string price;
+        public string Price
+        {
+            get { return price; }
+            set { price = value; OnPropertyChanged(); }
+        }
+        private bool accessibility;
+        public string Accessibility
+        {
+            get { return accessibility; }
+            set { accessibility = value; OnPropertyChanged(); }
+        }
+        #endregion
+
+        #region buttons
+        public ICommand AddToiletCommand { get; set; }
+        #endregion
+
+
+        private async void AddToilet()
+        {
+            InServerCall = true;
+
+            UserInfo? u = ((App)Application.Current).LoggedInUser;
+            //call the server to add the information
+
+            //add the recipe as pending
+
+            //how to add user id 
+            CurrentToiletInfo information = new CurrentToiletInfo { Tlocation = address, Price = price, UserId = u.UserId.Value, Accessibility=accessibility};
+            bool worked = await this.proxy.AddToilet(information);
+            InServerCall = false;
+
+            if (!worked)
+            {
+                ErrorMsg = "Something Went Wrong";
+            }
+            else
+            {
+                ErrorMsg = "All Good";
+            }
+
+        }
+
+
     }
 }

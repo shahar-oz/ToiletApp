@@ -91,7 +91,7 @@
             
                      
                         <!--do the data connection in order to bind - look at tamis-->
-                        <Button Text="Add Toilet" Command="{Binding RegisterCommand}"  Padding="20" WidthRequest="200" HorizontalOptions="Center" Style="{StaticResource buttonStyle}" />
+                    <Button Text="Add Toilet" Command="{Binding AddToiletCommand}"  Padding="20" WidthRequest="200" HorizontalOptions="Center" Style="{StaticResource buttonStyle}" />
                 
                 </VerticalStackLayout>
                 <!-- Centered ActivityIndicator -->

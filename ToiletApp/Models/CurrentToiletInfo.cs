@@ -12,8 +12,8 @@ namespace ToiletApp.Models
         public string? Tlocation { get; set; }
         public bool? Accessibility { get; set; }
         public double? Price { get; set; }
-        //public Rate? Rate { get; set; }
-        //public Review? Review { get; set; }
+        public RateInfo? Rate { get; set; }
+        public ReviewInfo? Review { get; set; }
 
         public List<CurrentToiletPhotoInfo> Photos { get; set; }
 

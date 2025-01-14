@@ -111,14 +111,14 @@ namespace ToiletApp.ViewModel
             }
         }
 
-        private string price;
-        public string Price
+        private double price;
+        public double Price
         {
             get { return price; }
             set { price = value; OnPropertyChanged(); }
         }
         private bool accessibility;
-        public string Accessibility
+        public bool Accessibility
         {
             get { return accessibility; }
             set { accessibility = value; OnPropertyChanged(); }
@@ -140,7 +140,7 @@ namespace ToiletApp.ViewModel
             //add the recipe as pending
 
             //how to add user id 
-            CurrentToiletInfo information = new CurrentToiletInfo { Tlocation = address, Price = price, UserId = u.UserId.Value, Accessibility=accessibility};
+            CurrentToiletInfo information = new CurrentToiletInfo { Tlocation = Address, Price = Price, Accessibility=Accessibility, Photos=null, Rate=null, Review=null};
             bool worked = await this.proxy.AddToilet(information);
             InServerCall = false;
 

@@ -6,77 +6,12 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using ToiletApp.Services;
 using ToiletApp.Models;
+using System.Collections.ObjectModel;
 
 namespace ToiletApp.ViewModel
 {
     public class AddToiletViewModel:ViewModelBase
     {
-        //#region Address
-        //private bool showAddressError;
-
-        //public bool ShowAddressError
-        //{
-        //    get => showAddressError;
-        //    set
-        //    {
-        //        showAddressError = value;
-        //        OnPropertyChanged("ShowAddressError");
-        //    }
-        //}
-
-        //private string address;
-
-        //public string Address
-        //{
-        //    get => address;
-        //    set
-        //    {
-        //        address = value;
-        //        ValidateAddress();
-        //        OnPropertyChanged("Address");
-        //    }
-        //}
-
-        //private string addressError;
-
-        //public string AddressError
-        //{
-        //    get => addressError;
-        //    set
-        //    {
-        //        addressError = value;
-        //        OnPropertyChanged("AddressError");
-        //    }
-        //}
-
-        //private async Task<AddressComponents> ValidateAddress(bool fullValidation = false)
-        //{
-        //    AddressComponents components = null;
-        //    this.ShowAddressError = string.IsNullOrEmpty(Address);
-        //    if (fullValidation && !this.ShowAddressError)
-        //    {
-        //        //Check if the address is valid using the GeocodingService
-        //        components = await GeocodingService.GetAddressComponentsAsync(Address);
-        //        if (components == null)
-        //        {
-        //            AddressError = "Address is not valid";
-        //            ShowAddressError = true;
-        //        }
-        //        else
-        //        {
-        //            AddressError = "";
-        //            ShowAddressError = false;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        AddressError = "Address is required";
-        //    }
-        //    return components;
-        //}
-
-        //#endregion
-
         private ToiletAppWebAPIProxy proxy;
         private IServiceProvider serviceProvider;
 
@@ -86,30 +21,69 @@ namespace ToiletApp.ViewModel
             this.proxy = proxy;
             this.serviceProvider = serviceProvider;
             AddToiletCommand = new Command(AddToilet);
+            AddPhotoCommand = new Command(AddPhoto);
+            address = "";
+            AddressError = "Invalid Address!";
+            price = 0.0;
+            accessibility = false;
+            this.photos = new ObservableCollection<string>();
         }
         #endregion
 
         #region Properties
-        private string address;
-        public string Address
+        private ObservableCollection<string> photos;
+        public ObservableCollection<string> Photos
         {
-            get { return address; }
-            set { address = value; OnPropertyChanged(); }
+            get { return photos; }
+            set { photos = value; OnPropertyChanged(); }
         }
 
-        private string errorMsg;
-        public string ErrorMsg
+        #region Address
+        private bool showAddressError;
+
+        public bool ShowAddressError
         {
-            get => errorMsg;
+            get => showAddressError;
             set
             {
-                if (errorMsg != value)
-                {
-                    errorMsg = value;
-                    OnPropertyChanged(nameof(ErrorMsg));
-                }
+                showAddressError = value;
+                OnPropertyChanged("ShowAddressError");
             }
         }
+
+        private string address;
+
+        public string Address
+        {
+            get => address;
+            set
+            {
+                address = value;
+                ValidateAddress();
+                OnPropertyChanged("Address");
+            }
+        }
+
+        private string addressError;
+
+        public string AddressError
+        {
+            get => addressError;
+            set
+            {
+                addressError = value;
+                OnPropertyChanged("AddressError");
+            }
+        }
+
+        private void ValidateAddress(bool fullValidation = false)
+        {
+            this.ShowAddressError = string.IsNullOrEmpty(Address);
+        }
+
+        #endregion
+
+
 
         private double price;
         public double Price
@@ -127,31 +101,72 @@ namespace ToiletApp.ViewModel
 
         #region buttons
         public ICommand AddToiletCommand { get; set; }
+        public ICommand AddPhotoCommand { get; set; }
         #endregion
 
+        private async void AddPhoto()
+        {
+            try
+            {
+                var result = await MediaPicker.Default.CapturePhotoAsync(new MediaPickerOptions
+                {
+                    Title = "Please select a photo",
+                });
 
+                if (result != null)
+                {
+                    // The user picked a file
+                    this.Photos.Add(result.FullPath);
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+        }
         private async void AddToilet()
         {
             InServerCall = true;
 
-            UserInfo? u = ((App)Application.Current).LoggedInUser;
-            //call the server to add the information
+            CurrentToiletInfo information = new CurrentToiletInfo 
+            { 
+                ToiletId = 0,
+                Tlocation = Address, 
+                Price = Price, 
+                Accessibility=Accessibility, 
+             };
 
-            //add the recipe as pending
+            //Add toilet to the server database
+            CurrentToiletInfo? t = await this.proxy.AddToilet(information);
 
-            //how to add user id 
-            CurrentToiletInfo information = new CurrentToiletInfo { Tlocation = Address, Price = Price, Accessibility=Accessibility, Photos=null, Rate=null, Review=null};
-            bool worked = await this.proxy.AddToilet(information);
-            InServerCall = false;
-
-            if (!worked)
+            if (t != null)
             {
-                ErrorMsg = "Something Went Wrong";
+                int success = 0, fail = 0;
+                foreach(string path in this.Photos)
+                {
+                    t = await proxy.UploadToiletImage(path, t.ToiletId);
+                    if ( t != null)
+                    {
+                        success++;
+                    }
+                    else
+                    { fail++; }
+                }
+
+                if (fail > 0)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Error", $"Toilet was added but {fail} images fail to be uploaded", "ok");
+                }
             }
             else
             {
-                ErrorMsg = "All Good";
+                await Application.Current.MainPage.DisplayAlert("Error","Something went wrong, try again later!", "ok");
             }
+
+            
+            
+            InServerCall = false;
+
+            
 
         }
 

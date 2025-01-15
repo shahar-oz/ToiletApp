@@ -1,106 +1,115 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ToiletApp.Views.AddToilet"
-             Title="AddToilet">
-    <StackLayout VerticalOptions="FillAndExpand">
-        <ScrollView>
-            <Grid>
+<ContentPage
+    x:Class="ToiletApp.Views.AddToilet"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="AddToilet">
+    <ScrollView>
+        <StackLayout VerticalOptions="FillAndExpand">
+            <ScrollView>
+                <Grid>
 
 
-                <!-- Main Content -->
-                <VerticalStackLayout IsEnabled="{Binding NotInServerCall}" Padding="20">
-
-                    <!--  Address --><!--
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Label Text="Address" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
-                       
-                    </Grid>
-                    <Entry Placeholder="Type address" Text="{Binding Name}" Style="{StaticResource entryStyle}" />-->
-                    <!-- Full Address -->
-                    
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Label Text="Address" Grid.Column="0" Style="{StaticResource labelAddressStyle}" />
-                        <Label Text="{Binding AddressError}" IsVisible="{Binding ShowAddressError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
-                    </Grid>
-                    <Entry Placeholder="Type Address" Text="{Binding Address}" Style="{StaticResource entryStyle}" />
+                    <!--  Main Content  -->
+                    <VerticalStackLayout Padding="20" IsEnabled="{Binding NotInServerCall}">
 
 
-                    <!-- Price -->
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Label Text="Price" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
-                    </Grid>
-                    <Entry Placeholder="Type price" Text="{Binding Email}" Style="{StaticResource entryStyle}" />
-
-
-                    <!--Accessibility -->
-                    <StackLayout RadioButtonGroup.GroupName="option" RadioButtonGroup.SelectedValue="{Binding Option}">
-                        <Label Margin="10" Text="Choose your toilet's accessibility " />
-                        <RadioButton Content="accessible" Value='2' />
-                        <RadioButton Content="not accessible" Value='1'/>
-
-                    </StackLayout>
-
-
-                    <!--  Image -->
-                    <Frame BorderColor="Black" Padding="5" Margin="15" HeightRequest="130" WidthRequest="130" BackgroundColor="White">
                         <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Image x:Name="theImage" Source="{Binding LocalPhotoPath}" HeightRequest="170" />
-                            <Label Grid.Row="0"
-                           Text="Click Here To Pick a Photo!"
-                           TextColor="Blue"
-                           HorizontalOptions="Center"
-                           VerticalOptions="End">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding UploadPhotoCommand}"/>
-                                </Label.GestureRecognizers>
-                            </Label>
-                            <Label Grid.Row="2"
-                           Text="Upload Photo from Gallery!"
-                           TextColor="Blue"
-                           HorizontalOptions="Center"
-                           VerticalOptions="End">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding GalleryPhotoCommand}"/>
-                                </Label.GestureRecognizers>
-                            </Label>
+                            <Label
+                                Grid.Column="0"
+                                Style="{StaticResource labelAddressStyle}"
+                                Text="Address" />
+                            <Label
+                                Grid.Column="1"
+                                IsVisible="{Binding ShowAddressError}"
+                                Style="{StaticResource labelErrorStyle}"
+                                Text="{Binding AddressError}" />
                         </Grid>
-                    </Frame>
+                        <Entry
+                            Placeholder="Type Address"
+                            Style="{StaticResource entryStyle}"
+                            Text="{Binding Address}" />
 
-                    <!-- Add Toilet Button -->
-            
-                     
-                        <!--do the data connection in order to bind - look at tamis-->
-                    <Button Text="Add Toilet" Command="{Binding AddToiletCommand}"  Padding="20" WidthRequest="200" HorizontalOptions="Center" Style="{StaticResource buttonStyle}" />
-                
-                </VerticalStackLayout>
-                <!-- Centered ActivityIndicator -->
-                <ActivityIndicator IsRunning="{Binding InServerCall}" 
-                Color="Red" 
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />
-            </Grid>
 
-        </ScrollView>
-    </StackLayout>
+                        <!--  Price  -->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                Style="{StaticResource labelNameStyle}"
+                                Text="Price" />
+                        </Grid>
+                        <Entry
+                            Keyboard="Numeric"
+                            Placeholder="Type price"
+                            Style="{StaticResource entryStyle}"
+                            Text="{Binding Price}" />
+
+
+                        <!--  Accessibility  -->
+                        <StackLayout RadioButtonGroup.GroupName="acc" RadioButtonGroup.SelectedValue="{Binding Accessibility}">
+                            <Label Margin="10" Text="Choose your toilet's accessibility " />
+                            <RadioButton
+                                Content="accessible"
+                                GroupName="acc"
+                                Value="true" />
+                            <RadioButton
+                                Content="not accessible"
+                                GroupName="acc"
+                                Value="false" />
+
+                        </StackLayout>
+
+
+                        <!--  Images  -->
+                        <CollectionView ItemsSource="{Binding Photos}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout>
+                                        <Image Source="{Binding .}" WidthRequest="100" />
+                                    </StackLayout>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+
+
+                        <Button
+                            Padding="20"
+                            Command="{Binding AddPhotoCommand}"
+                            HorizontalOptions="Center"
+                            Style="{StaticResource buttonStyle}"
+                            Text="Add Photo"
+                            WidthRequest="200" />
+
+                        <!--  Add Toilet Button  -->
+
+
+                        <!--  do the data connection in order to bind - look at tamis  -->
+                        <Button
+                            Padding="20"
+                            Command="{Binding AddToiletCommand}"
+                            HorizontalOptions="Center"
+                            Style="{StaticResource buttonStyle}"
+                            Text="Add Toilet"
+                            WidthRequest="200" />
+
+                    </VerticalStackLayout>
+                    <!--  Centered ActivityIndicator  -->
+                    <ActivityIndicator
+                        HorizontalOptions="Center"
+                        IsRunning="{Binding InServerCall}"
+                        VerticalOptions="Center"
+                        Color="Red" />
+                </Grid>
+
+            </ScrollView>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

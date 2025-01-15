@@ -123,7 +123,7 @@ namespace ToiletApp.Services
         }
 
 
-        public async Task<bool> AddToilet(CurrentToiletInfo toilet)
+        public async Task<CurrentToiletInfo?> AddToilet(CurrentToiletInfo toilet)
         {
             //Set URI to the specific function API
             string url = $"{this.baseUrl}addToilet";
@@ -136,16 +136,59 @@ namespace ToiletApp.Services
                 //Check status
                 if (response.IsSuccessStatusCode)
                 {
-                   return true;
-                   
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    CurrentToiletInfo? result = JsonSerializer.Deserialize<CurrentToiletInfo>(resContent, options);
+                    return result;
                 }
-               
-                    return false ;
-                }
+                else
+                    return null;
+            }
 
             catch (Exception ex)
             {
-                return false;
+                return null;
+            }
+        }
+
+        public async Task<CurrentToiletInfo?> UploadToiletImage(string imagePath, int toiletId)
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}UploadToiletImage?toiletId={toiletId}";
+            try
+            {
+                //Create the form data
+                MultipartFormDataContent form = new MultipartFormDataContent();
+                var fileContent = new ByteArrayContent(File.ReadAllBytes(imagePath));
+                form.Add(fileContent, "file", imagePath);
+                //Call the server API
+                HttpResponseMessage response = await client.PostAsync(url, form);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    CurrentToiletInfo? result = JsonSerializer.Deserialize<CurrentToiletInfo>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
             }
         }
     }

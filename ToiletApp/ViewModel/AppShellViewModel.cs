@@ -39,13 +39,7 @@ namespace ToiletApp.ViewModel
                 return this.currentUser.UserType == (int) USER_TYPES.SERVICE_PROVIDER;
             }
         }
-        public bool IsSanitationManager
-        {
-            get
-            {
-                return this.currentUser.UserType == (int)USER_TYPES.SANITAION;
-            }
-        }
+
 
         //this command will be used for logout menu item
         public Command LogoutCommand

@@ -16,7 +16,7 @@ namespace ToiletApp.ViewModel
         private IServiceProvider serviceProvider;
         private UserInfo? currentUser;
 
-        #region builder
+        #region Constructor
         public AddToiletViewModel(ToiletAppWebAPIProxy proxy, IServiceProvider serviceProvider)
         {
             this.proxy = proxy;

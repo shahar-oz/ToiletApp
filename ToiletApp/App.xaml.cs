@@ -8,8 +8,7 @@ namespace ToiletApp
     {
         GENERAL = 1,
         SERVICE_PROVIDER = 2,
-        SANITAION = 3,
-        ADMIN = 4
+        ADMIN = 3
     }
     public partial class App : Application
     {

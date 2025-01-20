@@ -12,6 +12,7 @@ namespace ToiletApp.Models
         public string? Tlocation { get; set; }
         public bool? Accessibility { get; set; }
         public double? Price { get; set; }
+        public int? StatusID { get; set; }
         //public RateInfo? Rate { get; set; }
         //public ReviewInfo? Review { get; set; }
         public CurrentToiletInfo()

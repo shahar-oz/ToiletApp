@@ -14,6 +14,7 @@ namespace ToiletApp.ViewModel
     {
         private ToiletAppWebAPIProxy proxy;
         private IServiceProvider serviceProvider;
+        private UserInfo? currentUser;
 
         #region builder
         public AddToiletViewModel(ToiletAppWebAPIProxy proxy, IServiceProvider serviceProvider)
@@ -26,7 +27,9 @@ namespace ToiletApp.ViewModel
             AddressError = "Invalid Address!";
             price = 0.0;
             accessibility = false;
+            //statusID = 2;
             this.photos = new ObservableCollection<string>();
+            this.currentUser = ((App)Application.Current).LoggedInUser;
         }
         #endregion
 
@@ -84,6 +87,13 @@ namespace ToiletApp.ViewModel
         #endregion
 
 
+        //private int statusID;
+        //public int StatusID
+        //{
+        //    get { return statusID; }
+        //    set { statusID = value; OnPropertyChanged(); }
+        //}
+
 
         private double price;
         public double Price
@@ -132,30 +142,42 @@ namespace ToiletApp.ViewModel
                 ToiletId = 0,
                 Tlocation = Address, 
                 Price = Price, 
-                Accessibility=Accessibility, 
-             };
+                Accessibility=Accessibility
+                //StatusID = 2
+            };
 
             //Add toilet to the server database
             CurrentToiletInfo? t = await this.proxy.AddToilet(information);
 
             if (t != null)
             {
-                int success = 0, fail = 0;
+                int fail = 0;
                 foreach(string path in this.Photos)
                 {
                     t = await proxy.UploadToiletImage(path, t.ToiletId);
-                    if ( t != null)
-                    {
-                        success++;
-                    }
-                    else
-                    { fail++; }
+
+                    if (t == null) ++fail;
                 }
 
                 if (fail > 0)
                 {
                     await Application.Current.MainPage.DisplayAlert("Error", $"Toilet was added but {fail} images fail to be uploaded", "ok");
                 }
+                else
+                {
+                    await Application.Current.MainPage.DisplayAlert("Success!", "Toilet was added successfully", "ok");
+                    
+
+                }
+               if( currentUser.UserType == (int)USER_TYPES.ADMIN)
+                {
+                    await Shell.Current.GoToAsync("System");
+                }
+                if (currentUser.UserType == (int)USER_TYPES.SERVICE_PROVIDER)
+                {
+                    await Shell.Current.GoToAsync("ServiceProvider");
+                }
+
             }
             else
             {

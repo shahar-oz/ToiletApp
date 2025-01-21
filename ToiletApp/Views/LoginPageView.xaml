@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             
              x:Class="ToiletApp.Views.LoginPageView">
-    <VerticalStackLayout Padding="10" BackgroundColor="White" IsEnabled="{Binding NotInServerCall}">
+    <VerticalStackLayout Padding="10" BackgroundColor="White" IsEnabled="{Binding NotInServerCall}" >
 
         <Label
             Padding="5"
@@ -50,7 +50,7 @@
         <Label FontFamily="Consolas" Text="{Binding ErrorMsg}"
                TextColor="red"/>
         <StackLayout Margin="0,20,0,0" HorizontalOptions="Center">
-            <Label Text="Doesn't have an account?" />
+            <Label Text="Don't have an account?" />
             <Label
                 FontAttributes="Bold"
                 HorizontalOptions="Center"

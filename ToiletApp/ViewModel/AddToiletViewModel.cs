@@ -142,13 +142,13 @@ namespace ToiletApp.ViewModel
                 ToiletId = 0,
                 Tlocation = Address, 
                 Price = Price, 
-                Accessibility=Accessibility
-                //StatusID = 2
+                Accessibility=Accessibility,
+                StatusID = 2 //Pending
             };
 
             //Add toilet to the server database
             CurrentToiletInfo? t = await this.proxy.AddToilet(information);
-
+            InServerCall = false;
             if (t != null)
             {
                 int fail = 0;
@@ -158,7 +158,7 @@ namespace ToiletApp.ViewModel
 
                     if (t == null) ++fail;
                 }
-
+                
                 if (fail > 0)
                 {
                     await Application.Current.MainPage.DisplayAlert("Error", $"Toilet was added but {fail} images fail to be uploaded", "ok");
@@ -171,11 +171,11 @@ namespace ToiletApp.ViewModel
                 }
                if( currentUser.UserType == (int)USER_TYPES.ADMIN)
                 {
-                    await Shell.Current.GoToAsync("System");
+                    await Shell.Current.GoToAsync("//System");
                 }
                 if (currentUser.UserType == (int)USER_TYPES.SERVICE_PROVIDER)
                 {
-                    await Shell.Current.GoToAsync("ServiceProvider");
+                    await Shell.Current.GoToAsync("//ServiceProvider");
                 }
 
             }

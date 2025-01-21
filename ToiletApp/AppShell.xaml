@@ -13,14 +13,7 @@
       Title="AddSanitMan"
       ContentTemplate="{DataTemplate views:AddSanitManegerView}"
       Route="AddSanitManeger" Icon="plusicon.png" />
-        <ShellContent IsVisible="{Binding IsAdmin}"
-      Title="AddToilet" 
-      ContentTemplate="{DataTemplate views:AddToilet}"
-      Route="AddToilet" Icon="plusicon.png" />
-        <ShellContent IsVisible="{Binding IsServiceProvider}"
-        Title="AddToilet" 
-        ContentTemplate="{DataTemplate views:AddToilet}"
-        Route="AddToilet" Icon="plusicon.png"/>
+       
        
         <ShellContent IsVisible="{Binding IsSanitationManager}"
       Title="SanitationManeger"
@@ -39,8 +32,18 @@
       ContentTemplate="{DataTemplate views:SystemView}"
       Route="System" Icon="wrenchicon.png" />
     </FlyoutItem>
+    <FlyoutItem Title="Add Toilet" Icon="plusicon.png">
+        <ShellContent IsVisible="{Binding IsAdmin}"
+Title="AddToilet" 
+ContentTemplate="{DataTemplate views:AddToilet}"
+Route="AddToilet" Icon="plusicon.png" />
+        <ShellContent IsVisible="{Binding IsServiceProvider}"
+  Title="AddToilet" 
+  ContentTemplate="{DataTemplate views:AddToilet}"
+  Route="AddToilet" Icon="plusicon.png"/>
+    </FlyoutItem>
     <MenuItem Text="Logout"
-              Command="{Binding LogoutCommand}"
-              IconImageSource="logouticon.png"></MenuItem>
+          Command="{Binding LogoutCommand}"
+          IconImageSource="logouticon.png"></MenuItem>
 
 </Shell>

@@ -58,6 +58,7 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Fonts\MoweraSerifDisplay.ttf" />
+	  <None Remove="Resources\Fonts\Switzal.ttf" />
 	  <None Remove="Resources\Images\logouticon.png" />
 	  <None Remove="Resources\Images\mapicon.png" />
 	  <None Remove="Resources\Images\plusicon.png" />

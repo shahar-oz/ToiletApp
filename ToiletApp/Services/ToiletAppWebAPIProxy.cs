@@ -191,7 +191,38 @@ namespace ToiletApp.Services
                 return null;
             }
         }
-    
+        public async Task<List<CurrentToiletInfo>> GetAllApprovedToilets()
+        {
+            string url = $"{this.baseUrl}GetAllApprovedToilets";
+            try
+            {
+                // Call the server API
+                HttpResponseMessage response = await client.GetAsync(url);
+
+                // Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    // Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    // Deserialize result to List<GaragePartsDTO>
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    List<CurrentToiletInfo> result = JsonSerializer.Deserialize<List<CurrentToiletInfo>>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
     }
 }
 

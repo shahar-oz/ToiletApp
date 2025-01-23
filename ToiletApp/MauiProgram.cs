@@ -24,9 +24,8 @@ namespace ToiletApp
             builder.Services.AddSingleton<ToiletAppWebAPIProxy>();
 
             #region TransientViews
-            builder.Services.AddTransient<AddSanitManegerView>();
+
             builder.Services.AddTransient<AddToilet>();
-            builder.Services.AddTransient<Admin_sNavigationView>();
             builder.Services.AddTransient<LoginPageView> ();
             builder.Services.AddTransient<SanitationManeger> ();
             builder.Services.AddTransient<SelectedToilet>();
@@ -38,9 +37,7 @@ namespace ToiletApp
             #endregion
 
             #region TransientViewModels
-            builder.Services.AddTransient<AddSanitManegerViewModel>();
             builder.Services.AddTransient<AddToiletViewModel>();
-            builder.Services.AddTransient<AdminsNavigationViewModel>();
             builder.Services.AddTransient<AppShellViewModel>();
             builder.Services.AddTransient<LoginPageViewModel> ();
             builder.Services.AddTransient<SanitationManegerViewModel>();

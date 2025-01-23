@@ -78,9 +78,6 @@
 	  <Compile Update="Views\AddToiletView.xaml.cs">
 	    <DependentUpon>AddToiletView.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\AdminsNavigationView.xaml.cs">
-	    <DependentUpon>AdminsNavigationView.xaml</DependentUpon>
-	  </Compile>
 	  <Compile Update="Views\SanitationManegerView.xaml.cs">
 	    <DependentUpon>SanitationManegerView.xaml</DependentUpon>
 	  </Compile>
@@ -90,13 +87,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\AddSanitManegerView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Views\AddToiletView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\AdminsNavigationView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\LoginPageView.xaml">

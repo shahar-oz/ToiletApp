@@ -9,13 +9,9 @@
     Title="ToiletApp">
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
 
-        <ShellContent IsVisible="{Binding IsAdmin}"
-      Title="AddSanitMan"
-      ContentTemplate="{DataTemplate views:AddSanitManegerView}"
-      Route="AddSanitManeger" Icon="plusicon.png" />
-       
-       
-        <ShellContent IsVisible="{Binding IsSanitationManager}"
+      
+
+        <ShellContent IsVisible="{Binding IsSanitaion}"
       Title="SanitationManeger"
       ContentTemplate="{DataTemplate views:SanitationManeger}"
       Route="SanitationManeger" Icon="sanitman.png" />

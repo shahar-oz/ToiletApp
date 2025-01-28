@@ -13,8 +13,7 @@ namespace ToiletApp.ViewModel
 {
     public class SelectToiletViewModel:ViewModelBase
     {
-        private ToiletAppWebAPIProxy proxy;
-        private IServiceProvider serviceProvider;
+       
         
     }
 }

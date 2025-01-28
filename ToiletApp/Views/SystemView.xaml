@@ -1,12 +1,60 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ToiletApp.Views.SystemView"
-             Title="SystemView">
+<ContentPage
+    x:Class="ToiletApp.Views.SystemView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:ToiletApp.Models"
+    xmlns:viewModels="clr-namespace:ToiletApp.ViewModel"
+    Title="SystemView">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+
+        <Picker ItemsSource="{Binding Statuses}" SelectedItem="{Binding SelectedStatus}" />
+
+        <CollectionView
+            x:Name="ToiletsList"
+            HeightRequest="200"
+            ItemsSource="{Binding ToiletsCol}"
+            SelectedItem="{Binding SelectedObject}"
+            SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:CurrentToiletInfo">
+                    <Frame Margin="0,5" Padding="10">
+                        <SwipeView Grid.Column="0" Margin="5,0">
+                            <SwipeView.LeftItems>
+                                <SwipeItems>
+                                    <SwipeItem
+                                        Command="{Binding Source={x:Reference ToiletsList}, Path=BindingContext.DeclineToilet}"
+                                        CommandParameter="{Binding .}"
+                                        IconImageSource="decline.png"
+                                        Text="Decline" />
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem
+                                        Command="{Binding Source={x:Reference ToiletsList}, Path=BindingContext.ApproveToilet}"
+                                        CommandParameter="{Binding .}"
+                                        IconImageSource="checkmark.png"
+                                        Text="Approve" />
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+                        </SwipeView>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <StackLayout Margin="0,20,0,0" HorizontalOptions="Center">
+
+            <Label
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                Text="Register a new user!"
+                TextColor="Blue">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding RegisterCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
     </VerticalStackLayout>
 </ContentPage>

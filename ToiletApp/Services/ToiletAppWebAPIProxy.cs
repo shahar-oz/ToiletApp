@@ -223,6 +223,139 @@ namespace ToiletApp.Services
             }
         }
 
+        public async Task<List<CurrentToiletInfo>> GetAllPendingToilets()
+        {
+            string url = $"{this.baseUrl}GetAllPendingToilets";
+            try
+            {
+                // Call the server API
+                HttpResponseMessage response = await client.GetAsync(url);
+
+                // Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    // Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    // Deserialize result to List<GaragePartsDTO>
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    List<CurrentToiletInfo> result = JsonSerializer.Deserialize<List<CurrentToiletInfo>>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public async Task<List<CurrentToiletInfo>> GetAllDeclinedToilets()
+        {
+            string url = $"{this.baseUrl}GetAllDeclinedToilets";
+            try
+            {
+                // Call the server API
+                HttpResponseMessage response = await client.GetAsync(url);
+
+                // Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    // Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    // Deserialize result to List<GaragePartsDTO>
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    List<CurrentToiletInfo> result = JsonSerializer.Deserialize<List<CurrentToiletInfo>>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        #region Change Status
+        //will return true if it worked and false if it didnt
+        public async Task<bool> ChangeStatusToApprove(CurrentToiletInfo toiletInfo)
+        {
+            string url = $"{this.baseUrl}ChangeStatusToApprove";
+            try
+            {
+                //Call the server API
+                string json = JsonSerializer.Serialize(toiletInfo);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    bool result = JsonSerializer.Deserialize<bool>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> ChangStatusToDecline(CurrentToiletInfo toiletInfo)
+        {
+            string url = $"{this.baseUrl}ChangStatusToDecline";
+            try
+            {
+                //Call the server API
+                string json = JsonSerializer.Serialize(toiletInfo);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    bool result = JsonSerializer.Deserialize<bool>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        #endregion
+
+
     }
 }
 

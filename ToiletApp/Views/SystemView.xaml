@@ -7,7 +7,6 @@
     xmlns:viewModels="clr-namespace:ToiletApp.ViewModel"
     Title="SystemView">
     <VerticalStackLayout>
-
         <Picker ItemsSource="{Binding Statuses}" SelectedItem="{Binding SelectedStatus}" />
 
         <CollectionView
@@ -56,5 +55,6 @@
                 </Label.GestureRecognizers>
             </Label>
         </StackLayout>
+   
     </VerticalStackLayout>
 </ContentPage>

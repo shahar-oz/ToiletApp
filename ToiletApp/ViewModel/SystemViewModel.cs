@@ -11,12 +11,7 @@ using ToiletApp.Views;
 
 namespace ToiletApp.ViewModel
 {
-    public class Status
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-    }
-
+ 
     public class SystemViewModel : ViewModelBase
     {
         private ToiletAppWebAPIProxy proxy;
@@ -111,7 +106,7 @@ namespace ToiletApp.ViewModel
             SelectedStatus = new Status()
             {
                 Id = 2,
-                Name = "Pening"
+                Name = "Pending"
             };
         }
         #endregion

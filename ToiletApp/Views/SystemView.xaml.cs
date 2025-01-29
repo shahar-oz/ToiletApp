@@ -1,9 +1,14 @@
+using Microsoft.Extensions.DependencyInjection;
+using ToiletApp.Services;
+using ToiletApp.ViewModel;
+
 namespace ToiletApp.Views;
 
 public partial class SystemView : ContentPage
 {
-	public SystemView()
+	public SystemView(SystemViewModel vn)
 	{
-		InitializeComponent();
-	}
+        this.BindingContext = vn;
+        InitializeComponent();
+    }
 }

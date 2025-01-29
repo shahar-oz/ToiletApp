@@ -9,7 +9,7 @@ namespace ToiletApp
         GENERAL = 1,
         SERVICE_PROVIDER = 2,
         ADMIN = 3,
-        SANITATION = 4
+      
     }
     public partial class App : Application
     {

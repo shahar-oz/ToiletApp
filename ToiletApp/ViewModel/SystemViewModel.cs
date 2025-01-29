@@ -71,7 +71,7 @@ namespace ToiletApp.ViewModel
                 Id = 3,
                 Name = "Declined"
             });
-
+            
             ToiletsCol = new ObservableCollection<CurrentToiletInfo>();
             GetAllApprovedToilets();
 
@@ -103,11 +103,7 @@ namespace ToiletApp.ViewModel
             List<CurrentToiletInfo> list = await this.proxy.GetAllDeclinedToilets();
             foreach (CurrentToiletInfo t in list)
                 toilets.Add(t);
-            SelectedStatus = new Status()
-            {
-                Id = 2,
-                Name = "Pending"
-            };
+            SelectedStatus = Statuses[1];
         }
         #endregion
 
@@ -213,10 +209,13 @@ namespace ToiletApp.ViewModel
             if (success)
             {
                 ErrorMsgStatusToilet = "Status Changed to Approved";
+                await Application.Current.MainPage.DisplayAlert("Success!", "Toilet's status changed to approved", "ok");
             }
             else
+            {
                 ErrorMsgStatusToilet = "Something Went Wrong";
-          
+                await Application.Current.MainPage.DisplayAlert("Error", "Something went wrong. Try again later", "ok");
+            }
         }
 
         public async void ChangStatusToDecline()
@@ -226,10 +225,16 @@ namespace ToiletApp.ViewModel
             if (success)
             {
                 ErrorMsgStatusToilet = "Status Changed To Declined";
+                await Application.Current.MainPage.DisplayAlert("Success!", "Toilet's status changed to declined", "ok");
             }
             else
-                ErrorMsgStatusToilet = "Something went Wrong"; 
-        }
+            {
+                ErrorMsgStatusToilet = "Something went Wrong";
+
+                await Application.Current.MainPage.DisplayAlert("Error", "Something went wrong. Try again later", "ok");
+            }
+               }
+
         #endregion
 
         private void OnSignUp()

@@ -29,7 +29,7 @@ namespace ToiletApp.Services
         private HttpClient client;
         private string baseUrl;
         public static string BaseAddress = "https://nr3zcjt7-5159.euw.devtunnels.ms/api/";
-        private static string ImageBaseAddress = "https://nr3zcjt7-5159.euw.devtunnels.ms/";
+        public static string ImageBaseAddress = "https://nr3zcjt7-5159.euw.devtunnels.ms/";
         #endregion
 
         public ToiletAppWebAPIProxy()

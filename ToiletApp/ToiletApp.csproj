@@ -60,7 +60,9 @@
 	  <None Remove="Resources\Fonts\MoweraSerifDisplay.ttf" />
 	  <None Remove="Resources\Fonts\Switzal.ttf" />
 	  <None Remove="Resources\Images\checkmark.png" />
+	  <None Remove="Resources\Images\checkmarkicon.png" />
 	  <None Remove="Resources\Images\decline.png" />
+	  <None Remove="Resources\Images\declineicon.png" />
 	  <None Remove="Resources\Images\logouticon.png" />
 	  <None Remove="Resources\Images\mapicon.png" />
 	  <None Remove="Resources\Images\plusicon.png" />
@@ -80,9 +82,6 @@
 	  <Compile Update="Views\AddToiletView.xaml.cs">
 	    <DependentUpon>AddToiletView.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\SanitationManegerView.xaml.cs">
-	    <DependentUpon>SanitationManegerView.xaml</DependentUpon>
-	  </Compile>
 	  <Compile Update="Views\SelectedToiletView.xaml.cs">
 	    <DependentUpon>SelectedToiletView.xaml</DependentUpon>
 	  </Compile>
@@ -93,9 +92,6 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\LoginPageView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\SanitationManegerView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\SelectedToiletView.xaml">

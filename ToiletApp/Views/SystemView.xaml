@@ -6,25 +6,27 @@
     xmlns:models="clr-namespace:ToiletApp.Models"
     xmlns:viewModels="clr-namespace:ToiletApp.ViewModel"
     Title="SystemView">
+    <RefreshView>
     <VerticalStackLayout>
-        <Picker ItemsSource="{Binding Statuses}" SelectedItem="{Binding SelectedStatus}" />
-
-        <CollectionView
+        <Label Text="Select toilet status:"> </Label>
+        <Picker Title="Select toilet status" ItemsSource="{Binding Statuses}" SelectedItem="{Binding SelectedStatus}" ItemDisplayBinding="{Binding Name}" />
+        <Border HeightRequest="260">
+            <CollectionView
             x:Name="ToiletsList"
             HeightRequest="200"
             ItemsSource="{Binding ToiletsCol}"
-            SelectedItem="{Binding SelectedObject}"
-            SelectionMode="Single">
-            <CollectionView.ItemTemplate>
+                SelectedItem="{Binding SelectedObject}"
+                SelectionMode="Single">
+                <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:CurrentToiletInfo">
-                    <Frame Margin="0,5" Padding="10">
+                        <Border>
                         <SwipeView Grid.Column="0" Margin="5,0">
                             <SwipeView.LeftItems>
                                 <SwipeItems>
                                     <SwipeItem
                                         Command="{Binding Source={x:Reference ToiletsList}, Path=BindingContext.DeclineToilet}"
                                         CommandParameter="{Binding .}"
-                                        IconImageSource="decline.png"
+                                        IconImageSource="declineicon.png"
                                         Text="Decline" />
                                 </SwipeItems>
                             </SwipeView.LeftItems>
@@ -34,15 +36,24 @@
                                     <SwipeItem
                                         Command="{Binding Source={x:Reference ToiletsList}, Path=BindingContext.ApproveToilet}"
                                         CommandParameter="{Binding .}"
-                                        IconImageSource="checkmark.png"
+                                        IconImageSource="checkmarkicon.png"
                                         Text="Approve" />
                                 </SwipeItems>
                             </SwipeView.RightItems>
-                        </SwipeView>
-                    </Frame>
-                </DataTemplate>
+                        <StackLayout>
+                                <Label Text="{Binding Tlocation}"></Label>
+                                <Label Text="{Binding Accessibility}"></Label>
+                                <Label Text="{Binding Price}"></Label>
+                                <Image Source="{Binding PhotoURL}"></Image>
+                               
+                            </StackLayout>
+                    </SwipeView>
+
+                        </Border>
+                    </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+        </Border>
         <StackLayout Margin="0,20,0,0" HorizontalOptions="Center">
 
             <Label
@@ -57,4 +68,5 @@
         </StackLayout>
    
     </VerticalStackLayout>
+    </RefreshView>
 </ContentPage>

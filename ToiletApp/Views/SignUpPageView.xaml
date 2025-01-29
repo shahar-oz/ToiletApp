@@ -64,7 +64,7 @@
                                 <RadioButton GroupName="Types" Value="1" Content="General"></RadioButton>
                                 <RadioButton GroupName="Types" Value="2" Content="Service Provider"></RadioButton>
                                 <RadioButton GroupName="Types" Value="3" Content="Admin" IsVisible="{Binding IsAdmin}"></RadioButton>
-                                <RadioButton GroupName="Types" Value="1" Content="Sanitation" IsVisible="{Binding IsAdmin}"></RadioButton>
+                               
 
                             </VerticalStackLayout>
                        

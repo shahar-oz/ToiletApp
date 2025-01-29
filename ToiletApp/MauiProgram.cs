@@ -26,8 +26,7 @@ namespace ToiletApp
             #region TransientViews
 
             builder.Services.AddTransient<AddToilet>();
-            builder.Services.AddTransient<LoginPageView> ();
-            builder.Services.AddTransient<SanitationManeger> ();
+            builder.Services.AddTransient<LoginPageView> ();;
             builder.Services.AddTransient<SelectedToilet>();
             builder.Services.AddTransient<SelectToiletView>();
             builder.Services.AddTransient<ServiceProvider>();
@@ -40,7 +39,6 @@ namespace ToiletApp
             builder.Services.AddTransient<AddToiletViewModel>();
             builder.Services.AddTransient<AppShellViewModel>();
             builder.Services.AddTransient<LoginPageViewModel> ();
-            builder.Services.AddTransient<SanitationManegerViewModel>();
             builder.Services.AddTransient<SelectedToiletViewModel>();
             builder.Services.AddTransient<SelectToiletViewModel>();
             builder.Services.AddTransient<ServiceProviderViewModel>();

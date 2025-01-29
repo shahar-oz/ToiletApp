@@ -11,10 +11,6 @@
 
       
 
-        <ShellContent IsVisible="{Binding IsSanitaion}"
-      Title="SanitationManeger"
-      ContentTemplate="{DataTemplate views:SanitationManeger}"
-      Route="SanitationManeger" Icon="sanitman.png" />
         <ShellContent IsVisible="{Binding IsGeneralUser}"
       Title="SelectToilet"
       ContentTemplate="{DataTemplate views:SelectToiletView}"

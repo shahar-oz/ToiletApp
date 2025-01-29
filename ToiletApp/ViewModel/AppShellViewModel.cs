@@ -39,13 +39,7 @@ namespace ToiletApp.ViewModel
                 return this.currentUser.UserType == (int) USER_TYPES.SERVICE_PROVIDER;
             }
         }
-        public bool IsSanitaion
-        {
-            get
-            {
-                return this.currentUser.UserType == (int)USER_TYPES.SANITATION;
-            }
-        }
+       
 
 
 

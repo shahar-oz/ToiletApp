@@ -17,6 +17,10 @@ namespace ToiletApp
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold"); 
                     fonts.AddFont("Switzal.ttf", "Switzal"); 
+                    fonts.AddFont("Balney Demo.otf", "Balney"); 
+                    fonts.AddFont("OWLY BARN Personal Use.ttf", "font"); 
+                    fonts.AddFont("Kissing Season.ttf", "kiss"); 
+
                 });
 
         

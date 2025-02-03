@@ -57,12 +57,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Fonts\Balney Demo.otf" />
+	  <None Remove="Resources\Fonts\Kissing Season.ttf" />
 	  <None Remove="Resources\Fonts\MoweraSerifDisplay.ttf" />
+	  <None Remove="Resources\Fonts\OWLY BARN Personal Use.ttf" />
 	  <None Remove="Resources\Fonts\Switzal.ttf" />
 	  <None Remove="Resources\Images\checkmark.png" />
 	  <None Remove="Resources\Images\checkmarkicon.png" />
 	  <None Remove="Resources\Images\decline.png" />
 	  <None Remove="Resources\Images\declineicon.png" />
+	  <None Remove="Resources\Images\holding.png" />
 	  <None Remove="Resources\Images\logouticon.png" />
 	  <None Remove="Resources\Images\mapicon.png" />
 	  <None Remove="Resources\Images\plusicon.png" />

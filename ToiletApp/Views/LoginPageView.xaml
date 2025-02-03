@@ -7,12 +7,14 @@
     BackgroundColor="White">
 
     <VerticalStackLayout VerticalOptions="Center" Padding="30" Spacing="15">
+        <Image Source="holding.png" HeightRequest="260"></Image>
 
         <Label Text="Welcome Back!" 
-               FontSize="26" 
+               FontSize="50" 
                FontAttributes="Bold" 
                TextColor="#1E3A8A" 
-               HorizontalOptions="Center"/>
+               HorizontalOptions="Center"
+               FontFamily="kiss"/>
 
         <!-- Email Input -->
         <Label Text="Email" TextColor="#1E3A8A" FontSize="18"/>
@@ -41,16 +43,7 @@
                 WidthRequest="200"
                 HorizontalOptions="Center"/>
 
-        <!-- Forgot Password? -->
-        <Label Text="Forgot Password?" 
-               TextColor="#1E3A8A" 
-               FontSize="16" 
-               HorizontalOptions="Center">
-            <Label.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}"/>
-            </Label.GestureRecognizers>
-        </Label>
-
+     
         <!-- Register Navigation -->
         <Label Text="Don't have an account? Sign up here" 
                TextColor="#1E3A8A" 

@@ -5,8 +5,8 @@ namespace ToiletApp.Views;
 public partial class LoginPageView : ContentPage
 {
 	public LoginPageView(LoginPageViewModel vn)
-	{		
-		InitializeComponent();
+	{
+        InitializeComponent();
         this.BindingContext = vn;
     }
 }

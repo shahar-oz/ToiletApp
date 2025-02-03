@@ -22,6 +22,8 @@ namespace ToiletApp
         
             #region SingeltonsandTransients
             builder.Services.AddSingleton<ToiletAppWebAPIProxy>();
+     
+
 
             #region TransientViews
 

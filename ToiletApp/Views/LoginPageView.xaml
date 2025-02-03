@@ -2,66 +2,69 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             
-             x:Class="ToiletApp.Views.LoginPageView">
-    <VerticalStackLayout Padding="10" BackgroundColor="White" IsEnabled="{Binding NotInServerCall}" >
+             x:Class="ToiletApp.Views.LoginPageView"
+    Title="Login"
+    BackgroundColor="White">
 
-        <Label
-            Padding="5"
-            FontAttributes="Bold"
-            FontFamily="moweraserifdisplay"
-            FontSize="30"
-            Text="Login"
-            TextColor="Black" 
+    <VerticalStackLayout VerticalOptions="Center" Padding="30" Spacing="15">
 
-/>
+        <Label Text="Welcome Back!" 
+               FontSize="26" 
+               FontAttributes="Bold" 
+               TextColor="#1E3A8A" 
+               HorizontalOptions="Center"/>
 
-        <Label FontFamily="Consolas" Text="Email" />
-        <Frame
-            Margin="0,10,0,0"
-            Padding="3"
-            CornerRadius="10">
-            <Entry
-                x:Name="Email"
-                Margin="5,0,0,0"
-                FontSize="18"
-                Placeholder="Email"
-                Text="{Binding Email, Mode=TwoWay}" />
-        </Frame>
-        <Label FontFamily="Consolas" Text="Password" />
-        <Frame
-            Margin="0,10,0,0"
-            Padding="3"
-            CornerRadius="10">
-            <Entry
-                x:Name="Password"
-                Margin="5,0,0,0"
-                FontSize="18"
-                IsPassword="True"
-                Placeholder="Password"
-                Text="{Binding Password, Mode=TwoWay}" />
-        </Frame>
-        <Button
-            x:Name="LoginButton"
-            Margin="0,20,0,0"
-            Command="{Binding LoginCommand}"
-            HorizontalOptions="FillAndExpand"
-            Text="Login"
-            VerticalOptions="CenterAndExpand" />
-        <Label FontFamily="Consolas" Text="{Binding ErrorMsg}"
-               TextColor="red"/>
-        <StackLayout Margin="0,20,0,0" HorizontalOptions="Center">
-            <Label Text="Don't have an account?" />
-            <Label
-                FontAttributes="Bold"
-                HorizontalOptions="Center"
-                Text="Sign Up here!"
-                TextColor="Blue"
-                    >
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding RegisterCommand}" />
-                </Label.GestureRecognizers>
-            </Label>
-        </StackLayout>
-        <ActivityIndicator IsRunning="{Binding InServerCall}"/>
+        <!-- Email Input -->
+        <Label Text="Email" TextColor="#1E3A8A" FontSize="18"/>
+        <Entry Placeholder="Enter your email" 
+               BackgroundColor="#E0F2FE" 
+               TextColor="#1E3A8A" 
+               FontSize="16" 
+               Text="{Binding Email}"/>
+
+        <!-- Password Input -->
+        <Label Text="Password" TextColor="#1E3A8A" FontSize="18"/>
+        <Entry Placeholder="Enter your password" 
+               IsPassword="True" 
+               BackgroundColor="#E0F2FE" 
+               TextColor="#1E3A8A" 
+               FontSize="16" 
+               Text="{Binding Password}"/>
+
+        <!-- Login Button -->
+        <Button Command="{Binding LoginCommand}"
+                Text="Login"
+                BackgroundColor="#1E3A8A"
+                TextColor="White"
+                CornerRadius="10"
+                FontSize="16" 
+                WidthRequest="200"
+                HorizontalOptions="Center"/>
+
+        <!-- Forgot Password? -->
+        <Label Text="Forgot Password?" 
+               TextColor="#1E3A8A" 
+               FontSize="16" 
+               HorizontalOptions="Center">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}"/>
+            </Label.GestureRecognizers>
+        </Label>
+
+        <!-- Register Navigation -->
+        <Label Text="Don't have an account? Sign up here" 
+               TextColor="#1E3A8A" 
+               FontSize="16" 
+               HorizontalOptions="Center">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding RegisterCommand}"/>
+            </Label.GestureRecognizers>
+        </Label>
+
+        <!-- Loading Indicator -->
+        <ActivityIndicator IsRunning="{Binding IsBusy}" 
+                           Color="#1E3A8A" 
+                           HorizontalOptions="Center"/>
+
     </VerticalStackLayout>
 </ContentPage>

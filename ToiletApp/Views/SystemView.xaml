@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<!--<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     x:Class="ToiletApp.Views.SystemView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -8,22 +8,28 @@
     Title="System View"
     BackgroundColor="#F4F7FC">
 
-    <RefreshView>
-        <VerticalStackLayout Padding="25" Spacing="15" BackgroundColor="White" Margin="15">
-            <Label Text="Select Toilet Status" TextColor="#1E3A8A" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center"/>
-            <Picker Title="Select toilet status" ItemsSource="{Binding Statuses}" SelectedItem="{Binding SelectedStatus}" ItemDisplayBinding="{Binding Name}" BackgroundColor="#E3EAFD" TextColor="#1E3A8A"/>
+    --><!--<RefreshView>--><!--
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+            <Label Text="Select Toilet Status" TextColor="#1E3A8A" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" Grid.Row="0"/>
+        <Picker Title="Select toilet status" ItemsSource="{Binding Statuses}" SelectedItem="{Binding SelectedStatus}" Grid.Row="1" ItemDisplayBinding="{Binding Name}" BackgroundColor="#E3EAFD" TextColor="#1E3A8A"/>
 
-            <Frame HeightRequest="280" Padding="12" BackgroundColor="White" Margin="0,10,0,10" HasShadow="True">
-                <CollectionView
+         
+        <CollectionView Grid.Row="2"
                     x:Name="ToiletsList"
-                    HeightRequest="220"
+                    
                     ItemsSource="{Binding ToiletsCol}"
                     SelectedItem="{Binding SelectedObject}"
-                    SelectionMode="Single">
+                    SelectionMode="None">
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:CurrentToiletInfo">
-                            <Frame Padding="15" BackgroundColor="#E3EAFD" HasShadow="True">
-                                <SwipeView Grid.Column="0">
+                       
+                                <SwipeView>
                                     <SwipeView.LeftItems>
                                         <SwipeItems>
                                             <SwipeItem
@@ -51,24 +57,75 @@
                                         <Image Source="{Binding PhotoURL}" WidthRequest="100" HeightRequest="100" Margin="0,5,0,0"/>
                                     </StackLayout>
                                 </SwipeView>
-                            </Frame>
+                      
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-            </Frame>
+            
 
-            <StackLayout HorizontalOptions="Center" Padding="10">
-                <Label
-                    FontAttributes="Bold"
-                    HorizontalOptions="Center"
-                    Text="Register a new user!"
-                    TextColor="#1E3A8A"
-                    FontSize="18">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding RegisterCommand}" />
-                    </Label.GestureRecognizers>
-                </Label>
-            </StackLayout>
-        </VerticalStackLayout>
-    </RefreshView>
+        
+        </Grid>
+    --><!--</RefreshView>--><!--
+</ContentPage>-->
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ToiletApp.Views.SystemView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:ToiletApp.Models"
+    xmlns:viewModels="clr-namespace:ToiletApp.ViewModel"
+    Title="System View"
+    BackgroundColor="#F4F7FC">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label Text="Select Toilet Status" TextColor="#1E3A8A" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" Grid.Row="0"/>
+
+        <Picker Title="Select toilet status" ItemsSource="{Binding Statuses}" SelectedItem="{Binding SelectedStatus}" Grid.Row="1" ItemDisplayBinding="{Binding Name}" BackgroundColor="#E3EAFD" TextColor="#1E3A8A"/>
+
+        <CollectionView Grid.Row="2"
+                        x:Name="ToiletsList"
+                        ItemsSource="{Binding ToiletsCol}"
+                        SelectedItem="{Binding SelectedObject}"
+                        SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:CurrentToiletInfo">
+                    <SwipeView>
+                        <SwipeView.LeftItems>
+                            <SwipeItems>
+                                <SwipeItem
+                                    Command="{Binding Source={x:Reference ToiletsList}, Path=BindingContext.DeclineToilet}"
+                                    CommandParameter="{Binding .}"
+                                    IconImageSource="declineicon.png"
+                                    Text="Decline"
+                                    BackgroundColor="#FF5A5F"/>
+                            </SwipeItems>
+                        </SwipeView.LeftItems>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem
+                                    Command="{Binding Source={x:Reference ToiletsList}, Path=BindingContext.ApproveToilet}"
+                                    CommandParameter="{Binding .}"
+                                    IconImageSource="checkmarkicon.png"
+                                    Text="Approve"
+                                    BackgroundColor="#4CAF50"/>
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <StackLayout Padding="10" Spacing="5">
+                            <Label Text="{Binding Tlocation}" TextColor="#1E3A8A" FontSize="16" FontAttributes="Bold"/>
+                            <Label Text="{Binding Accessibility}" TextColor="#1E3A8A" FontSize="14"/>
+                            <Label Text="{Binding Price}" TextColor="#1E3A8A" FontSize="14"/>
+                            <Image Source="{Binding PhotoURL}" WidthRequest="100" HeightRequest="100" Margin="0,5,0,0"/>
+                        </StackLayout>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
 </ContentPage>

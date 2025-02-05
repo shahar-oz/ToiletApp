@@ -208,6 +208,8 @@ namespace ToiletApp.ViewModel
             bool success = await this.proxy.ChangeStatusToApprove(SelectedToilet);
             if (success)
             {
+                SelectedToilet.StatusID = 1;
+                Filter();
                 ErrorMsgStatusToilet = "Status Changed to Approved";
                 await Application.Current.MainPage.DisplayAlert("Success!", "Toilet's status changed to approved", "ok");
             }
@@ -224,6 +226,8 @@ namespace ToiletApp.ViewModel
             bool success = await this.proxy.ChangStatusToDecline(SelectedToilet);
             if (success)
             {
+                SelectedToilet.StatusID = 3;
+                Filter();
                 ErrorMsgStatusToilet = "Status Changed To Declined";
                 await Application.Current.MainPage.DisplayAlert("Success!", "Toilet's status changed to declined", "ok");
             }

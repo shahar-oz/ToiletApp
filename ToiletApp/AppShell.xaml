@@ -15,24 +15,29 @@
       Title="SelectToilet"
       ContentTemplate="{DataTemplate views:SelectToiletView}"
       Route="SelectToilet" Icon="selecticon.png" />
+
         <ShellContent IsVisible="{Binding IsServiceProvider}"
       Title="ServiceProvider"
       ContentTemplate="{DataTemplate views:ServiceProviderView}"
       Route="ServiceProvider" Icon="serviceicon.png" />
+        
         <ShellContent  IsVisible="{Binding IsAdmin}"
       Title="System"
       ContentTemplate="{DataTemplate views:SystemView}"
       Route="System" Icon="wrenchicon.png" />
+        
     </FlyoutItem>
     <FlyoutItem Title="Add Toilet" Icon="plusicon.png">
         <ShellContent IsVisible="{Binding IsAdmin}"
 Title="AddToilet" 
 ContentTemplate="{DataTemplate views:AddToilet}"
 Route="AddToilet" Icon="plusicon.png" />
+
         <ShellContent IsVisible="{Binding IsServiceProvider}"
   Title="AddToilet" 
   ContentTemplate="{DataTemplate views:AddToilet}"
   Route="AddToilet" Icon="plusicon.png"/>
+        
     </FlyoutItem>
     <MenuItem Text="Logout"
           Command="{Binding LogoutCommand}"

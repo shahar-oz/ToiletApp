@@ -11,4 +11,6 @@ public partial class SystemView : ContentPage
         this.BindingContext = vn;
         InitializeComponent();
     }
+
+   
 }
